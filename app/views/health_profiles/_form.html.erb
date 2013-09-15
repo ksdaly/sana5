@@ -1,0 +1,18 @@
+<%= simple_form_for @health_profile do |f| %>
+  <%= f.input :male%>
+  <%= f.input :dob, as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year - 12,
+                              order: [:month, :day, :year] %>
+  <%= f.input :weight %>
+  <%= f.input :height %>
+  <%= f.input :systolic_bp %>
+  <%= f.input :diastolic_bp %>
+  <%= f.input :antihypertensive_drugs %>
+  <%= f.input :steroid_drugs %>
+  <%= f.input :diabetes %>
+  <%= f.input :parent_with_diabetes %>
+  <%= f.input :sibling_with_diabetes %>
+  <%= f.input :smoker %>
+  <%= f.input :exsmoker %>
+  <%= f.submit 'Submit' %>
+<% end %>

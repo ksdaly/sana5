@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+
+  has_many :health_profiles,
+    inverse_of: :user,
+    dependent: :destroy
+
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_format_of :username, with: /\A[A-Za-z0-9_]{1,15}\z/i

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cardiovascular risk:</strong>
+  <%= @health_profile.cardiovascular_risk %>
+</p>
+
+<p>
+  <strong>Diabetes risk:</strong>
+  <%= @health_profile.diabetes_risk %>
+</p>
+
+
+<%= link_to 'Edit', edit_health_profile_path(@health_profile) %> |
+<%= link_to 'Back', health_profiles_path %>

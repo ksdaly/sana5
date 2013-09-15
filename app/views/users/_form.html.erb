@@ -1,0 +1,5 @@
+<%= simple_form_for @user do |f| %>
+  <%= f.input :username, placeholder: 'Pick a username', label: false%>
+  <%= f.input :email, placeholder: 'Your email', label: false %>
+  <%= f.submit 'Sign up for Sana' %>
+<% end %>

@@ -1,0 +1,9 @@
+class User < ActiveRecord::Base
+  validates_presence_of :username
+  validates_uniqueness_of :username
+  validates_format_of :username, with: /\A[A-Za-z0-9_]{1,15}\z/i
+
+  validates_presence_of :email
+  validates_uniqueness_of :email
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
+end

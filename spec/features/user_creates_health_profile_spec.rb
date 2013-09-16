@@ -14,7 +14,7 @@ So that I can review my health risks
   scenario 'user creates health profile' do
     visit new_health_profile_path
 
-    check "health_profile_male"
+    choose "Male"
     # fill_in "health_profile_dob", with: '04/12/1984'
     select "1984", from: "health_profile_dob_1i"
     select "April", from: "health_profile_dob_2i"

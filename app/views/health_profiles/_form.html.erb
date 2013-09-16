@@ -1,12 +1,12 @@
 <%= simple_form_for @health_profile do |f| %>
-  <%= f.input :male%>
   <%= f.input :dob, as: :date, start_year: Date.today.year - 90,
                               end_year: Date.today.year - 12,
                               order: [:month, :day, :year] %>
-  <%= f.input :weight %>
-  <%= f.input :height %>
-  <%= f.input :systolic_bp %>
-  <%= f.input :diastolic_bp %>
+  <%= f.collection_radio_buttons :male, [[true, 'Male'] ,[false, 'Female']], :first, :last %>
+  <%= f.input :weight, placeholder: 'Weight in pounds', label: false, as: :string %>
+  <%= f.input :height, placeholder: 'Height in inches', label: false, as: :string %>
+  <%= f.input :systolic_bp, placeholder: 'Systolic blood pressure', label: false, as: :string %>
+  <%= f.input :diastolic_bp, placeholder: 'Diastolic blood pressure', label: false, as: :string %>
   <%= f.input :antihypertensive_drugs %>
   <%= f.input :steroid_drugs %>
   <%= f.input :diabetes %>
@@ -15,4 +15,11 @@
   <%= f.input :smoker %>
   <%= f.input :exsmoker %>
   <%= f.submit 'Submit' %>
+
+
 <% end %>
+
+<!-- <input id="health_profile_male_true" name="health=profile[male]" type="radio" value="true" />
+<label class="collection_radio_buttons" for="health_profile_male_true">Male</label>
+<input id="health_profile_male_false" name="health=profile[male]" type="radio" value="false" />
+<label class="collection_radio_buttons" for="health_profile_male_false">Female</label> -->

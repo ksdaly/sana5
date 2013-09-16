@@ -1,6 +1,9 @@
 class HealthProfilesController < ApplicationController
   before_action :set_health_profile, only: [:show, :edit, :update, :destroy]
 
+  def edit
+  end
+
   def show
   end
 
@@ -17,6 +20,20 @@ class HealthProfilesController < ApplicationController
         format.json { render action: 'show', status: :created, location: @health_profile }
       else
         format.html { render action: 'new' }
+        format.json { render json: @health_profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @health_profile.update(health_profile_params)
+        @health_profile = HealthProfile.new(health_profile_params)
+        @health_profile.complete
+        format.html { redirect_to @health_profile, notice: 'profile was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
         format.json { render json: @health_profile.errors, status: :unprocessable_entity }
       end
     end

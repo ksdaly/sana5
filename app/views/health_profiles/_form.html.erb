@@ -7,13 +7,13 @@
   <%= f.input :height, placeholder: 'Height in inches', label: false, as: :string %>
   <%= f.input :systolic_bp, placeholder: 'Systolic blood pressure', label: false, as: :string %>
   <%= f.input :diastolic_bp, placeholder: 'Diastolic blood pressure', label: false, as: :string %>
-  <%= f.input :antihypertensive_drugs %>
-  <%= f.input :steroid_drugs %>
-  <%= f.input :diabetes %>
-  <%= f.input :parent_with_diabetes %>
-  <%= f.input :sibling_with_diabetes %>
-  <%= f.input :smoker %>
-  <%= f.input :exsmoker %>
+  <%= f.input :antihypertensive_drugs, label: 'I am taing antihypertension drugs' %>
+  <%= f.input :steroid_drugs, label: 'I am taking steroid drugs' %>
+  <%= f.input :diabetes, label: 'I have diabetes' %>
+  <%= f.input :parent_with_diabetes, label: 'At least one of my parents has diabetes' %>
+  <%= f.input :sibling_with_diabetes, label: 'At least one of my siblings has diabetes' %>
+  <%= f.input :smoker, label: 'I am a smoker' %>
+  <%= f.input :exsmoker, label: 'I am an exsmoker' %>
   <%= f.submit 'Submit' %>
 
 

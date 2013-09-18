@@ -46,6 +46,6 @@ class HealthProfilesController < ApplicationController
     end
 
     def health_profile_params
-      params.require(:health_profile).permit(:id, :male, :dob, :weight, :height, :systolic_bp, :diastolic_bp, :antihypertensive_drugs, :steroid_drugs, :diabetes, :parent_with_diabetes, :sibling_with_diabetes, :smoker, :exsmoker, :cardiovascular_risk, :diabetes_risk)
+      params.require(:health_profile).permit(:male, :dob, :weight, :height, :systolic_bp, :diastolic_bp, :antihypertensive_drugs, :steroid_drugs, :diabetes, :parent_with_diabetes, :sibling_with_diabetes, :smoker, :exsmoker, :cardiovascular_risk, :diabetes_risk)
     end
 end

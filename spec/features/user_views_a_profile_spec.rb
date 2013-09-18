@@ -4,7 +4,7 @@ feature 'user views a profiel', %Q{
   As a person concerned with privacy
   I want to be the only one who can access my profile
   So that my health data remains secure
-}, focus: true do
+} do
 
 # ACCEPTANCE CRITERIA
 # * Only the user owning the health profile can view or edit the health profile

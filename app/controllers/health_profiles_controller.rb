@@ -14,15 +14,14 @@ class HealthProfilesController < ApplicationController
   def create
     @health_profile = HealthProfile.new(health_profile_params)
 
-    respond_to do |format|
+
       if @health_profile.complete
-        format.html { redirect_to @health_profile, notice: 'Health profile created!' }
-        format.json { render action: 'show', status: :created, location: @health_profile }
+        redirect_to @health_profile, notice: 'Health profile created!'
+
       else
-        format.html { render action: 'new' }
-        format.json { render json: @health_profile.errors, status: :unprocessable_entity }
+        render action: 'new'
+
       end
-    end
   end
 
   def update

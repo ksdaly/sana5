@@ -1,6 +1,11 @@
 class HealthProfilesController < ApplicationController
   before_action :set_health_profile, only: [:show, :edit, :update, :destroy]
 
+  before_action :require_patient!, only: [:show, :edit, :update, :destroy]
+
+  def index
+  end
+
   def edit
   end
 
@@ -13,30 +18,27 @@ class HealthProfilesController < ApplicationController
 
   def create
     @health_profile = HealthProfile.new(health_profile_params)
+    @health_profile.user_id = current_user.id
 
-    respond_to do |format|
       if @health_profile.complete
-        format.html { redirect_to @health_profile, notice: 'Health profile created!' }
-        format.json { render action: 'show', status: :created, location: @health_profile }
+        redirect_to @health_profile, notice: 'Health profile created!'
+
       else
-        format.html { render action: 'new' }
-        format.json { render json: @health_profile.errors, status: :unprocessable_entity }
+        render action: 'new'
+
       end
-    end
   end
 
   def update
-    respond_to do |format|
+
       if @health_profile.update(health_profile_params)
         @health_profile = HealthProfile.new(health_profile_params)
+        @health_profile.user_id = current_user.id
         @health_profile.complete
-        format.html { redirect_to @health_profile, notice: 'profile was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to @health_profile, notice: 'profile was successfully updated.'
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @health_profile.errors, status: :unprocessable_entity }
+        render action: 'edit'
       end
-    end
   end
 
     private
@@ -46,6 +48,14 @@ class HealthProfilesController < ApplicationController
     end
 
     def health_profile_params
-      params.require(:health_profile).permit(:id, :male, :dob, :weight, :height, :systolic_bp, :diastolic_bp, :antihypertensive_drugs, :steroid_drugs, :diabetes, :parent_with_diabetes, :sibling_with_diabetes, :smoker, :exsmoker, :cardiovascular_risk, :diabetes_risk)
+      params.require(:health_profile).permit(:male, :dob, :weight, :height, :systolic_bp,
+        :diastolic_bp, :antihypertensive_drugs, :steroid_drugs, :diabetes, :parent_with_diabetes,
+        :sibling_with_diabetes, :smoker, :exsmoker, :cardiovascular_risk, :diabetes_risk)
+    end
+
+    def require_patient!
+      unless current_user.id == @health_profile.user.id
+        access_denied
+      end
     end
 end

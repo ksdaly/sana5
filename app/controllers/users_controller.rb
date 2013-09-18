@@ -11,15 +11,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Welcome to Sana!' }
-        format.json { render action: 'show', status: :created, location: @user }
+        redirect_to @user, notice: 'Welcome to Sana!'
       else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render action: 'new'
       end
-    end
   end
 
   private
@@ -29,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:id, :username, :email)
+    params.require(:user).permit(:username, :email)
   end
 
 

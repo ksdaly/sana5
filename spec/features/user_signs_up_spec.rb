@@ -13,12 +13,16 @@ So that I can measure and reduce my health risks
 # * If I specify valid information, I register my account
 
   scenario 'user signs up' do
-    visit new_user_path
+    visit new_user_registration_path
     fill_in "user_username", with: 'kate'
     fill_in "user_email", with: 'kate@example.com'
-    click_button 'Sign up for Sana'
-    expect(page).to have_content('Welcome to Sana!')
+    fill_in "user_password", with: '12345678'
+    fill_in "user_password_confirmation", with: '12345678'
+    click_button 'Sign up'
+    expect(page).to have_content('You have signed up successfully')
     expect(page).to have_content('kate')
+    expect(page).to_not have_content('Sign up')
+    expect(User.count).to eql(1)
   end
 
 end

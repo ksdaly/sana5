@@ -5,7 +5,6 @@ FactoryGirl.define do
     password '12345678'
   end
 
-
   factory :health_profile do
     user
     dob "1984-04-12"
@@ -21,5 +20,10 @@ FactoryGirl.define do
     parent_with_diabetes false
     sibling_with_diabetes false
     exsmoker false
+  end
+
+  factory :health_plan do
+    sequence (:title) {|n|"plan#{n}"}
+    description 'minimize your risk'
   end
 end

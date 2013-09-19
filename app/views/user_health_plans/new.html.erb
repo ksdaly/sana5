@@ -1,0 +1,14 @@
+<h1>create a health plan</h1>
+
+<% UserHealthPlan.options.each do |health_plan| %>
+
+  <%= simple_form_for @user_health_plan do |f| %>
+    <%= f.hidden_field :health_plan_id, value: health_plan.id %>
+    <%= f.submit health_plan.title %>
+  <% end %>
+<% end %>
+
+
+
+
+

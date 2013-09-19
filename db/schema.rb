@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130918174831) do
+ActiveRecord::Schema.define(version: 20130919011516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "health_plans", force: true do |t|
+    t.string   "title",       null: false
+    t.string   "description", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "health_profiles", force: true do |t|
     t.integer  "user_id"
@@ -33,6 +40,13 @@ ActiveRecord::Schema.define(version: 20130918174831) do
     t.boolean  "exsmoker",                                       default: false
     t.decimal  "cardiovascular_risk",    precision: 5, scale: 2
     t.decimal  "diabetes_risk",          precision: 5, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_health_plans", force: true do |t|
+    t.integer  "user_id",        null: false
+    t.integer  "health_plan_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

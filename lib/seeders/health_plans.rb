@@ -22,7 +22,6 @@ module Seeders
           {
             title: "Diabetes plan",
             description: "Join our 16-week program and learn to change the factors that put you at risk for diabetes.",
-
           },
           {
             title: "Heart plan",

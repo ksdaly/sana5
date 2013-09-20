@@ -11,15 +11,22 @@ feature 'user views to-dos', %Q{
   # * I  can view a daily generated list of to-dos
   # * I can view to-dos for today
 
-  let(:user) {FactoryGirl.create(:user)}
+  let(:user1) {FactoryGirl.create(:user)}
+  let(:user2) {FactoryGirl.create(:user)}
   let!(:to_do) {FactoryGirl.create(:to_do)}
-  let!(:user_health_plan) {FactoryGirl.create(:user_health_plan, user: user, health_plan: to_do.health_plan)}
-  let!(:user_to_do) {FactoryGirl.create(:user_to_do, user: user, to_do: to_do)}
+  let!(:user_health_plan) {FactoryGirl.create(:user_health_plan, user: user1, health_plan: to_do.health_plan)}
+  let!(:user_to_do) {FactoryGirl.create(:user_to_do, user: user1, to_do: to_do)}
 
   scenario 'user is able to view to-dos' do
-    sign_in_as(user)
+    sign_in_as(user1)
     visit user_to_dos_path
     expect(page).to have_content(to_do.title)
   end
 
+
+  scenario 'user is able to view only their own to-dos' do
+    sign_in_as(user2)
+    visit user_to_dos_path
+    expect(page).to_not have_content(to_do.title)
+  end
 end

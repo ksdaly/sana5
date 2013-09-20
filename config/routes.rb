@@ -4,10 +4,10 @@ Sana5::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
   resources :users
   resources :health_profiles
-  resources :health_plans
   resources :user_health_plans
+  resources :user_to_dos
 
-  root :to => 'pages#show', :id => 'home'
+  root to: 'pages#show', id: 'home'
   # You can have the root of your site routed with "root"
   # root 'users#new'
 

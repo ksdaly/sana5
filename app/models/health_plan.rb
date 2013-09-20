@@ -1,5 +1,8 @@
 class HealthPlan < ActiveRecord::Base
 
+  has_many :to_dos,
+    inverse_of: :health_plan
+
   has_many :user_health_plans
 
   has_many :users,

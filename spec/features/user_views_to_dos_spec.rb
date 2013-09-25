@@ -4,7 +4,7 @@ feature 'user views to-dos', %Q{
   As a subscriber to a health plan
   I want to receive daily to-dos
   So that I can reach the goal of the health plan
-}, focus: true do
+} do
 
   # ACCEPTANCE CRITERIA
   # * I must have a valid health plan

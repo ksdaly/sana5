@@ -26,4 +26,23 @@ FactoryGirl.define do
     sequence (:title) {|n|"plan#{n}"}
     description 'minimize your risk'
   end
+
+  factory :user_health_plan do
+    user
+    health_plan
+  end
+
+  factory :to_do do
+    health_plan
+    sequence (:title) {|n|"to do #{n}"}
+    description 'do this thing'
+  end
+
+  factory :user_to_do do
+    user
+    to_do
+    completed false
+    day { Time.now }
+  end
+
 end

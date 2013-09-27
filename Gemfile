@@ -40,6 +40,7 @@ group :test, :deelopment do
   gem 'shoulda'
   gem 'launchy'
   gem 'pry-rails'
+  gem 'quiet_assets'
 end
 
 gem 'simple_form'

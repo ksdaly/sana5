@@ -21,8 +21,10 @@ class HealthProfile < ActiveRecord::Base
 
 
   def complete
-    self.cardiovascular_risk = cardiovascular_risk
-    self.diabetes_risk = diabetes_risk
+    if self.valid?
+      self.cardiovascular_risk = cardiovascular_risk
+      self.diabetes_risk = diabetes_risk
+    end
     self.save
   end
 

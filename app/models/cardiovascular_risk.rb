@@ -15,10 +15,12 @@ class CardiovascularRisk
   end
 
   def systolic_blood_pressure_log
-    Math.log(@health_profile.systolic_bp)
+     return 0 unless @health_profile.systolic_bp
+     Math.log(@health_profile.systolic_bp)
   end
 
   def bmi_log
+
     Math.log(@health_profile.calculated_bmi)
   end
 

@@ -31,4 +31,17 @@ So that I can review my health risks
     expect(page).to have_content('1.1')
   end
 
+ it 'user sees applicable errors' do
+    visit new_health_profile_path
+    sign_in_as(user1)
+
+    click_button 'Submit'
+    expect_presence_error_for(:weight)
+  end
+end
+
+def expect_presence_error_for(attribute)
+  within ".input.health_profile_#{attribute.to_s}" do
+    expect(page).to have_content "can't be blank"
+  end
 end

@@ -4,7 +4,7 @@ feature 'user signs up', %Q{
   As a health concious person
   I want to sign up
   So that I can measure and reduce my health risks
-  }, focus: true do
+  } do
 
   # ACCEPTANCE CRITERIA
   # * I must specify a valid email address

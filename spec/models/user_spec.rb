@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe User, focus: true do
+describe User do
 
   it {should have_many(:health_profiles)}
   it {should have_one(:health_plan).through(:user_health_plan)}

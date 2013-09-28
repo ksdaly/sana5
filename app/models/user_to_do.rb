@@ -9,5 +9,8 @@ class UserToDo < ActiveRecord::Base
   validates_presence_of :day
 
 
+  def self.get_current
+    self.where(user_id: @current_user.id, day: Date.today)
+  end
 
 end

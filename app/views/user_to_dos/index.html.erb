@@ -1,6 +1,6 @@
-<p>
+<ul>
   <strong>Your to-dos for the day:</strong>
   <% @user_to_dos.each do |user_to_do| %>
-    <%= user_to_do.to_do.title %>
+    <li><%= user_to_do.to_do.title %></li>
   <% end %>
-</p>
+</ul>

@@ -1,6 +1,15 @@
 <ul>
   <strong>Your to-dos for the day:</strong>
   <% @user_to_dos.each do |user_to_do| %>
-    <li><%= user_to_do.to_do.title %></li>
+    <li>
+      <%= user_to_do.to_do.title %>
+        <%= simple_form_for user_to_do do |f| %>
+        <% if user_to_do.incomplete? %>
+          <%= f.submit "complete"  %>
+        <% else %>
+          <%= f.submit "redo"  %>
+        <% end %>
+      <% end %>
+    </li>
   <% end %>
 </ul>

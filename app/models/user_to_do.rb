@@ -13,4 +13,16 @@ class UserToDo < ActiveRecord::Base
     self.where(user_id: @current_user.id, day: Date.today)
   end
 
+  def complete
+    if self.completed == false
+      self.update(completed: true)
+    else
+      self.update(completed: false)
+    end
+  end
+
+  def incomplete?
+    self.completed == false
+  end
+
 end

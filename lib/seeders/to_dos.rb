@@ -14,7 +14,7 @@ module Seeders
           else
             to_do.update_attributes(attributes)
           end
-          to_do.save
+          to_do.save!
         end
       end
 

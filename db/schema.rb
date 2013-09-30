@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920004313) do
+ActiveRecord::Schema.define(version: 20130927174602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "health_plans", force: true do |t|
-    t.string   "title",       null: false
-    t.string   "description", null: false
+    t.string   "title",            null: false
+    t.string   "description",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "plan_length_days"
   end
 
   create_table "health_profiles", force: true do |t|
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20130920004313) do
     t.integer  "health_plan_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "start_date"
   end
 
   create_table "user_to_dos", force: true do |t|

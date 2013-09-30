@@ -5,7 +5,12 @@ Sana5::Application.routes.draw do
   resources :users
   resources :health_profiles
   resources :user_health_plans
-  resources :user_to_dos
+
+  resources :user_to_dos do
+    collection do
+      put :complete
+    end
+  end
 
   root to: 'pages#show', id: 'home'
   # You can have the root of your site routed with "root"

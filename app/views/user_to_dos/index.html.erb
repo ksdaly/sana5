@@ -3,7 +3,7 @@
   <%= form_tag complete_user_to_dos_path, method: :put do %>
     <% @user_to_dos.each do |user_to_do| %>
       <li>
-        <%= hidden_field_tag "redo_ids[]", user_to_do.id if user_to_do.completed? %>
+        <%= hidden_field_tag "redo_ids[]", user_to_do.id %>
         <%= check_box_tag "user_to_do_ids[]", user_to_do.id, user_to_do.completed? %>
         <%= user_to_do.to_do.title %>
         <%= user_to_do.completed %>

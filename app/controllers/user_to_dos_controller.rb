@@ -5,8 +5,8 @@ class UserToDosController < ApplicationController
   end
 
   def complete
-    UserToDo.where(id: params[:redo_ids]).update_all(completed: false)
-    UserToDo.where(id: params[:user_to_do_ids]).update_all(completed: true)
+    UserToDo.where(id: params[:redo_ids], completed: true).update_all(completed: false)
+    UserToDo.where(id: params[:user_to_do_ids], completed: false).update_all(completed: true)
     redirect_to user_to_dos_path
   end
 

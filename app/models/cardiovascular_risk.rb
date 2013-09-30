@@ -15,7 +15,6 @@ class CardiovascularRisk
   end
 
   def systolic_blood_pressure_log
-     return 0 unless @health_profile.systolic_bp
      Math.log(@health_profile.systolic_bp)
   end
 

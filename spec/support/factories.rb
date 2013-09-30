@@ -25,11 +25,13 @@ FactoryGirl.define do
   factory :health_plan do
     sequence (:title) {|n|"plan#{n}"}
     description 'minimize your risk'
+    plan_length_days 21
   end
 
   factory :user_health_plan do
     user
     health_plan
+    start_date {Date.today}
   end
 
   factory :to_do do

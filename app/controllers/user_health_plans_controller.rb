@@ -12,7 +12,7 @@ class UserHealthPlansController < ApplicationController
     @user_health_plan = UserHealthPlan.new(user_health_plan_params)
     @user_health_plan.user_id = current_user.id
 
-      if @user_health_plan.save
+      if @user_health_plan.assign
         redirect_to @user_health_plan, notice: 'Health plan created!'
       else
         render action: 'new'

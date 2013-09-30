@@ -10,6 +10,7 @@ module Seeders
             health_plan = HealthPlan.new
             health_plan.title = attributes[:title]
             health_plan.description = attributes[:description]
+            health_plan.plan_length_days = attributes[:plan_length_days]
           else
             health_plan.update_attributes(attributes)
           end
@@ -22,14 +23,17 @@ module Seeders
           {
             title: "Diabetes plan",
             description: "Join our 16-week program and learn to change the factors that put you at risk for diabetes.",
+            plan_length_days: 21
           },
           {
             title: "Heart plan",
             description: "Join our 16-week program and learn to change the factors that put you at risk for cardiovascular diseases.",
+            plan_length_days: 21
           },
           {
             title: "Wellness plan",
             description: "In 16 weeks, you’ll be well on your way to a healthier lifestyle.",
+            plan_length_days: 21
           }
         ]
       end

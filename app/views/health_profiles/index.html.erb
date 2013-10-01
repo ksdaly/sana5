@@ -18,10 +18,12 @@
         title: { text: '%'}
       },
       series: [{
+        animation: false,
         name: 'Cardiovascular Risk',
         data: <%= HealthProfile.risk_array(current_user, 'cardiovascular_risk') %>
       },
       {
+        animation: false,
         name: 'Diabetes Risk',
         data: <%= HealthProfile.risk_array(current_user, 'diabetes_risk') %>
       }]

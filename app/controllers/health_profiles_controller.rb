@@ -32,14 +32,12 @@ class HealthProfilesController < ApplicationController
 
   def update
 
-      if @health_profile.update(health_profile_params)
+
         @health_profile = HealthProfile.new(health_profile_params)
         @health_profile.user_id = current_user.id
         @health_profile.complete
         redirect_to @health_profile, notice: 'profile was successfully updated.'
-      else
-        render action: 'edit'
-      end
+
   end
 
     private

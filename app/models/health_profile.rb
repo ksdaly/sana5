@@ -65,11 +65,16 @@ class HealthProfile < ActiveRecord::Base
     array = []
     self.where(user_id: user.id).each do |health_profile|
       subarray = []
-      subarray << health_profile.created_at
+      subarray << health_profile.js_date
       subarray << health_profile.send(risk.to_sym)
       array << subarray
     end
     array
+  end
+
+  def js_date
+    # self.created_at.at_beginning_of_day.to_i * 1000
+    self.created_at.to_i * 1000
   end
 
 

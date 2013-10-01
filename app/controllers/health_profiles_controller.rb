@@ -4,6 +4,7 @@ class HealthProfilesController < ApplicationController
   before_action :require_patient!, only: [:show, :edit, :update, :destroy]
 
   def index
+
   end
 
   def edit

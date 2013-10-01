@@ -45,4 +45,32 @@ class HealthProfile < ActiveRecord::Base
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
+  def cardio_risk(date)
+    where("date(created_at) = ?",date).cardiovascular_risk || 10
+  end
+
+  # def created_date
+  #   self.created_at.to_date
+  # end
+
+  # def self.cardio_risk_on(user, date)
+  #   where(user_id: user.id).where("date(created_at) = ?", date).last.try(:cardiovascular_risk) || 0
+  # end
+
+  # def self.diabetes_risk_on(user, date)
+  #   where(user_id: user.id).where("date(created_at) = ?", date).last.try(:diabetes_risk) || 0
+  # end
+
+  def self.risk_array(user, risk)
+    array = []
+    self.where(user_id: user.id).each do |health_profile|
+      subarray = []
+      subarray << health_profile.created_at
+      subarray << health_profile.send(risk.to_sym)
+      array << subarray
+    end
+    array
+  end
+
+
 end

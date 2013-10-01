@@ -1,0 +1,53 @@
+<div id="profile_chart" style="width: 560px; height: 300px;"></div>
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    new Highcharts.Chart({
+      chart: {
+        renderTo: 'profile_chart',
+        type: 'spline',
+      },
+      title: { text: 'Health Risks' },
+      type: 'datetime',
+        dateTimeLabelFormats: { // don't display the dummy year
+            month: '%e. %b',
+            year: '%b'
+        },
+      yAxis: {
+        title: { text: '%'}
+      },
+      plotOptions: {
+        area: {
+          marker: {
+            enabled: true,
+            symbol: 'circle',
+            radius: 2,
+            states: {
+              hover: {
+                enabled: true
+              }
+            }
+          }
+        }
+      },
+      series: [{
+        animation: false,
+        // pointInterval: <%= 1.day * 1000 %>,
+        // pointStart: <%= current_user.health_profiles.first.created_at.to_i * 1000 %>,
+        // name: "Cardiovascular Risk",
+        // data: <%=(current_user.health_profiles.first.created_at.to_date..Time.now.beginning_of_day).map{ |date| HealthProfile.cardio_risk_on(current_user, date)} %>
+        name: 'Cardiovascular Risk',
+        data: <%= HealthProfile.risk_array(current_user, 'cardiovascular_risk') %>
+
+      },
+      {
+        animation: false,
+        // pointInterval: <%= 1.day * 1000 %>,
+        // pointStart: <%=  current_user.health_profiles.first.created_at.to_i * 1000 %>,
+        // name: "Diabetes Risk",
+        // data: <%=(current_user.health_profiles.first.created_at.to_date..Time.now.beginning_of_day).map{ |date| HealthProfile.diabetes_risk_on(current_user, date)} %>
+        name: 'Diabetes Risk',
+        data: <%= HealthProfile.risk_array(current_user, 'diabetes_risk') %>
+      }
+    });
+  });
+</script>

@@ -1,4 +1,6 @@
 <div id="profile_chart" style="width: 560px; height: 300px;"></div>
+<div id="completion_chart" style="width: 250px; height: 250px;"></div>
+
 <script type="text/javascript" charset="utf-8">
   $(function () {
     $('#profile_chart').highcharts({
@@ -11,7 +13,7 @@
       xAxis: {
         type: 'datetime',
         dateTimeLabelFormats: {
-            day: '%e. %b',
+          day: '%e. %b',
         }
       },
       yAxis: {
@@ -29,4 +31,63 @@
       }]
     });
   });
+  </script>
+
+  <script>
+  $(function () {
+
+    var data = <%= UserHealthPlan.completion_array(current_user) %>
+        categories = ['Complete', 'Incomplete']
+        planData = []
+
+    for (var i = 0; i < data.length; i++){
+      planData.push([categories[i], data[i]]);
+    };
+
+
+    $('#completion_chart').highcharts({
+      chart: {
+        type: 'pie'
+      },
+      tooltip: {
+        pointFormat: '{point.percentage:.0f}%'
+      },
+      title: {
+        text: 'Health Plan Progress',
+      },
+      plotOptions: {
+        pie: {
+          innerSize: '65%',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true,
+          point: {
+            events: {
+              legendItemClick: function (e) {e.preventDefault()}
+            }
+          }
+        }
+      },
+      legend: {
+        itemHoverStyle: {
+          cursor: 'default'
+        }
+      },
+      series: [{
+        animation: false,
+        name: 'Health Plan',
+        data: planData
+      }]
+    }
+    // }, function(chart){
+
+    //   var completion = Math.round(data[0]/data[0]+ data[1]);
+
+    //   chart.renderer.text(completion, chart.plotLeft + (chart.plotWidth  * 0.45), chart.plotTop  + (chart.plotHeight * 0.55))
+    //     .add();
+    //   }
+    );
+});
+
 </script>

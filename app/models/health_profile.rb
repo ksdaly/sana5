@@ -25,7 +25,7 @@ class HealthProfile < ActiveRecord::Base
       self.cardiovascular_risk = cardiovascular_risk
       self.diabetes_risk = diabetes_risk
     end
-    self.save!
+      self.save!
   end
 
   def cardiovascular_risk

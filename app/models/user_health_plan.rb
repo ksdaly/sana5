@@ -25,7 +25,7 @@ class UserHealthPlan < ActiveRecord::Base
   end
 
   def plan_end_date
-    Date.today + self.health_plan.plan_length_days
+    self.start_date + self.health_plan.plan_length_days
   end
 
   def populate_user_todos
@@ -41,5 +41,28 @@ class UserHealthPlan < ActiveRecord::Base
       date += 1
     end
   end
+
+  def current_day
+    Date.today - self.start_date
+  end
+
+  def pending_days
+    self.plan_end_date - Date.today
+  end
+
+  def self.completion_array(user)
+    array = []
+    plan = UserHealthPlan.where(user_id: user.id).first
+
+    # subarray << 'completed'
+    array << plan.current_day
+
+
+    # subarray << 'incompleted'
+    array << plan.pending_days
+
+    array
+  end
+
 
 end

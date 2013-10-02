@@ -20,7 +20,7 @@ class HealthProfilesController < ApplicationController
     @health_profile = HealthProfile.new(health_profile_params)
     @health_profile.user_id = current_user.id
 
-      if @health_profile.complete
+      if @health_profile.save && @health_profile.complete?
         redirect_to @health_profile, notice: 'Health profile created!'
 
       else
@@ -30,15 +30,11 @@ class HealthProfilesController < ApplicationController
   end
 
   def update
-
-      if @health_profile.update(health_profile_params)
-        @health_profile = HealthProfile.new(health_profile_params)
-        @health_profile.user_id = current_user.id
-        @health_profile.complete
-        redirect_to @health_profile, notice: 'profile was successfully updated.'
-      else
-        render action: 'edit'
-      end
+    if HealthProfile.update(health_profile_params).merge{:current_user => current_user.id}
+      redirect_to @health_profile, notice: 'profile was successfully updated.'
+    else
+      render action: 'edit'
+    end
   end
 
     private

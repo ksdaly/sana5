@@ -10,12 +10,14 @@ class User < ActiveRecord::Base
 
   has_one :user_health_plan
 
+  # PDP thinks you don't want this
   has_one :health_plan,
     through: :user_health_plan,
     dependent: :destroy
 
-  has_many :user_to_dos
+  has_many :user_to_dos, dependent: :destroy
 
+  # PDP thinks you don't want this either
   has_many :to_dos,
     through: :user_to_dos,
     dependent: :destroy
@@ -27,4 +29,9 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
+
+  def add_health_plan(health_plan_id)
+    # create a new UserHealthPlan record
+    # Create all the UserToDo's for that HealthPlan
+  end
 end

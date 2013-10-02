@@ -2,6 +2,7 @@ class UserHealthPlan < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :health_plan
+  has_many :user_to_dos
 
   validates_presence_of :start_date
 

@@ -5,6 +5,8 @@ class CreateUserHealthPlans < ActiveRecord::Migration
       t.integer :health_plan_id, null: false
 
       t.timestamps
+
+      # Add foreign key constraint that health_plan_id is in health_plans.id
     end
   end
 end

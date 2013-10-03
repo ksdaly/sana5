@@ -52,17 +52,9 @@ class UserHealthPlan < ActiveRecord::Base
 
   def self.completion_array(user)
     array = []
-    plan = UserHealthPlan.where(user_id: user.id).first
-
-    # subarray << 'completed'
+    plan = UserHealthPlan.where(user_id: user.id).last
     array << plan.current_day
-
-
-    # subarray << 'incompleted'
     array << plan.pending_days
-
-    array
   end
-
 
 end

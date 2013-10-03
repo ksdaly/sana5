@@ -12,6 +12,8 @@ So that I can review my health risks
 # * If I specify the required information, the information is recorded and my health risk evaluation is displayed
 
     let(:user1) {FactoryGirl.create(:user)}
+    let(:health_profile) {FactoryGirl.create(:health_profile, user: user1)}
+    let(:old_health_profile) {FactoryGirl.create(:health_profile, user: user1, updated_at: Time.now - 1.year )}
 
   scenario 'user creates health profile' do
     visit new_health_profile_path
@@ -36,10 +38,39 @@ So that I can review my health risks
     click_button 'Submit'
     expect_presence_error_for(:weight)
   end
+
+  scenario 'user edits health profile' do
+    health_profile
+    sign_in_as(user1)
+    previous_count = HealthProfile.count
+    visit edit_health_profile_path(health_profile)
+
+    fill_in "health_profile_weight", with: 200
+    click_button 'Submit'
+    expect(HealthProfile.count).to eql(previous_count)
+    expect(HealthProfile.last.weight).to eql(200)
+    expect(HealthProfile.last.cardiovascular_risk).to_not be_nil
+  end
+
+  scenario 'user thinks they are editing health profile' do
+    old_health_profile
+    sign_in_as(user1)
+    previous_count = HealthProfile.count
+    visit edit_health_profile_path(old_health_profile)
+
+    fill_in "health_profile_weight", with: 200
+    click_button 'Submit'
+    expect(HealthProfile.count).to eql(previous_count + 1)
+    expect(HealthProfile.last.weight).to eql(200)
+    expect(HealthProfile.last.cardiovascular_risk).to_not be_nil
+  end
+
 end
 
 def expect_presence_error_for(attribute)
   within ".input.health_profile_#{attribute.to_s}" do
     expect(page).to have_content "can't be blank"
   end
+
+
 end

@@ -19,21 +19,23 @@ class HealthProfilesController < ApplicationController
 
   def create
     @health_profile = HealthProfile.new(health_profile_params)
-    @health_profile.user_id = current_user.id
-
-      if @health_profile.complete
-        redirect_to @health_profile, notice: 'Health profile created!'
-
-      else
-        render action: 'new'
-
-      end
+    @health_profile.user = current_user
+    if @health_profile.save
+      @health_profile.calculate_risks
+      redirect_to @health_profile, notice: 'Health profile created!'
+    else
+      render action: 'new'
+    end
   end
 
   def update
-    @health_profile = HealthProfile.new(health_profile_params)
-    @health_profile.user_id = current_user.id
-    if @health_profile.complete
+    if old_profile?
+      @health_profile = HealthProfile.new(health_profile_params)
+      @health_profile.user = current_user
+    end
+
+    if @health_profile.update(health_profile_params)
+      @health_profile.calculate_risks
       redirect_to @health_profile, notice: 'profile was successfully updated.'
     else
       render action: 'edit'
@@ -41,6 +43,11 @@ class HealthProfilesController < ApplicationController
   end
 
     private
+
+    def old_profile?
+      # @health_profile.updated_at.to_date.beginning_of_day != Time.now.utc.to_date
+      @health_profile.updated_at.to_date != Time.now.utc.to_date
+    end
 
     def set_health_profile
       @health_profile = HealthProfile.find(params[:id])

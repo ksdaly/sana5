@@ -20,19 +20,17 @@ class HealthProfile < ActiveRecord::Base
   validates_numericality_of :diastolic_bp, greater_than_or_equal_to: 60, less_than_or_equal_to: 110
 
 
-  def complete
-    if self.valid?
-      self.cardiovascular_risk = cardiovascular_risk
-      self.diabetes_risk = diabetes_risk
-    end
+  def calculate_risks
+    self.cardiovascular_risk = cardiovascular_risk_calculation
+    self.diabetes_risk = diabetes_risk_calculation
     self.save
   end
 
-  def cardiovascular_risk
+  def cardiovascular_risk_calculation
     (CardiovascularRisk.new(self).total_score * 100).round(2)
   end
 
-  def diabetes_risk
+  def diabetes_risk_calculation
     (DiabetesRisk.new(self).total_score * 100).round(2)
   end
 
@@ -44,5 +42,22 @@ class HealthProfile < ActiveRecord::Base
     now = Time.now.utc.to_date
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
+
+  def self.risk_array(user, risk)
+    array = []
+    self.where(user_id: user.id).each do |health_profile|
+      subarray = []
+      subarray << health_profile.js_date
+      subarray << health_profile.send(risk.to_sym).to_f
+      array << subarray
+    end
+    array
+  end
+
+  def js_date
+    # self.created_at.at_beginning_of_day.to_i * 1000
+    self.created_at.beginning_of_day.to_i * 1000
+  end
+
 
 end

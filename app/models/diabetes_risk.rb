@@ -31,7 +31,7 @@ class DiabetesRisk
     when 0..25.00 then 0
     when 25.01..27.49 then 0.699
     when 27.50..29.99 then 1.970
-    when 30.00..100.00 then 2.518
+    when 30.00..1000.00 then 2.518
     end
   end
 

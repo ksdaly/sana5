@@ -19,7 +19,6 @@ class CardiovascularRisk
   end
 
   def bmi_log
-
     Math.log(@health_profile.calculated_bmi)
   end
 

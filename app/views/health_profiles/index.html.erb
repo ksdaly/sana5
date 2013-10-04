@@ -1,5 +1,5 @@
-<div id="profile_chart" style="width: 560px; height: 300px;"></div>
-<div id="completion_chart" style="width: 250px; height: 250px;"></div>
+<div id="profile_chart" style=""></div>
+<div id="completion_chart" style=""></div>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
@@ -33,11 +33,7 @@
         data: <%= HealthProfile.risk_array(current_user, 'diabetes_risk') %>
       }]
     });
-  });
-  </script>
 
-  <script>
-  $(function () {
 
     var data = <%= UserHealthPlan.completion_array(current_user) %>
         categories = ['Complete', 'Incomplete']

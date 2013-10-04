@@ -48,3 +48,8 @@ gem 'simple_form'
 gem 'devise'
 
 gem 'high_voltage'
+
+gem 'bourbon'
+gem 'neat'
+gem 'font-awesome-rails'
+

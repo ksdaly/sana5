@@ -28,9 +28,9 @@ So that I can review my health risks
     fill_in "health_profile_systolic_bp", with: 140
     fill_in "health_profile_diastolic_bp", with: 90
     click_button 'Submit'
-    save_and_open_page
     expect(page).to have_content('1.88')
     expect(page).to have_content('1.1')
+    expect(current_path).to eql(new_user_health_plan_path)
   end
 
  it 'user sees applicable errors' do

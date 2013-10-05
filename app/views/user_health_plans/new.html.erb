@@ -1,4 +1,12 @@
-<h1>create a health plan</h1>
+<p>
+  <strong>Cardiovascular risk:</strong>
+  <%= current_user.health_profiles.last.cardiovascular_risk %>
+</p>
+
+<p>
+  <strong>Diabetes risk:</strong>
+  <%= current_user.health_profiles.last.diabetes_risk %>
+</p>
 
 <% UserHealthPlan.options.each do |health_plan| %>
 

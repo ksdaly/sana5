@@ -20,6 +20,7 @@ feature 'User selects a health plan', %Q{
     visit new_user_health_plan_path
     click_on health_plan.title
     expect(page).to have_content('Health plan created!')
+    expect(current_path).to eql(user_to_dos_path)
   end
 
 end

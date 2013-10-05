@@ -22,7 +22,7 @@ class HealthProfilesController < ApplicationController
     @health_profile.user = current_user
     if @health_profile.save
       @health_profile.calculate_risks
-      redirect_to @health_profile, notice: 'Health profile created!'
+      redirect_to new_user_health_plan_path, notice: 'Health profile created!'
     else
       render action: 'new'
     end

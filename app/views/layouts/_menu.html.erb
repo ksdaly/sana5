@@ -3,6 +3,7 @@
     <% if user_signed_in? %>
     <li class="gn-trigger">
       <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+      <% if current_user.health_plan.present? %>
       <nav class="gn-menu-wrapper">
         <div class="gn-scroller">
           <ul class="gn-menu">
@@ -40,6 +41,7 @@
         </div><!-- /gn-scroller -->
 
       </nav>
+      <%end%>
     </li>
     <% end %>
     <% if user_signed_in? %>

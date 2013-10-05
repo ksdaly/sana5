@@ -13,7 +13,7 @@ class UserHealthPlansController < ApplicationController
     @user_health_plan.user_id = current_user.id
 
       if @user_health_plan.assign
-        redirect_to @user_health_plan, notice: 'Health plan created!'
+        redirect_to user_to_dos_path, notice: 'Health plan created!'
       else
         render action: 'new'
       end

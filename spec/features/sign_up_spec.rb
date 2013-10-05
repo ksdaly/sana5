@@ -12,6 +12,7 @@ feature 'user signs up', %Q{
   # * I must specify and confirm password
   # * If I don't provide the above, I get an error message
   # * If I specify valid information, I register my account and am authenticated
+  # * After signing up, user is redirected to a new health profile;
 
 
   scenario 'specifying valid and required information' do
@@ -22,8 +23,8 @@ feature 'user signs up', %Q{
     fill_in 'user_password', with: 12345678
     fill_in 'user_password_confirmation', with: 12345678
     click_button 'Sign up'
-    expect(page).to have_content('Logged in as ksdaly')
     expect(page).to have_content('Logout')
+    expect(current_path).to eql(new_health_profile_path)
   end
 
   scenario 'required information is not supplied' do

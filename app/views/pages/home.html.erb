@@ -1,1 +1,30 @@
 
+
+  <div class="container">
+    <div class="signup-inner-container">
+      <div class="signup-text">
+        <h1 class="signup-heading">A roadmap to health.</h1>
+        <p class="signup-subheading">Improving your health can be confusing. It doesn't need to be.</p>
+      </div>
+    </div>
+
+    <div class="signup-form">
+      <div class="signup-form-inner">
+        <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :username, required: true, autofocus: true, placeholder: "Pick a username", label: false %>
+          <%= f.input :email, required: true, autofocus: true, placeholder: "Your email", label: false %>
+          <%= f.input :password, required: true, placeholder: "Create a password", label: false %>
+          <p class="signup-info">Use at least eight characters.</p>
+          <%= f.input :password_confirmation, required: true, placeholder: "Confirm password", label: false %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up for Sana" %>
+          <p class="signup-info">By clicking "Sign up for Sana", you agree to our terms of service and privacy policy.</p>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+

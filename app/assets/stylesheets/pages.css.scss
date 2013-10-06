@@ -1,3 +1,32 @@
+//  COLORS
+$actions: #f6833e;
+$buttons: #68B5A8;
+$background: #f5f4f0;
+$text: #4a4643;
+$white: #ffffff;
+
+// MODULAR SCALE
+$mod-scale-0: modular-scale(14px, 0, 1.618);
+$mod-scale-1: modular-scale(14px, 1, 1.618);
+$mod-scale-2: modular-scale(14px, 2, 1.618);
+$mod-scale-3: modular-scale(14px, 3, 1.618);
+
+//MIXINS
+@mixin submit-field-formatting{
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  line-height: $mod-scale-1;
+  border: 1px solid $buttons;
+  border-radius: 3px;
+}
+
+//grid
+$mobile: new-breakpoint(max-width 500px 6);
+$tablet: new-breakpoint(max-width 769px 6);
+
+
+
 *,
 *:after,
 *::before {
@@ -248,24 +277,77 @@ html {
   color: #4a4643;
 }
 
-.test {
-  color: #f6833e;
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  border-radius: 5px;
+// CONTENT
+
+.container{
+  @include outer-container;
+  padding: $mod-scale-3 0;
+
 }
 
-.test2 {
-  background-color: #68B5A8;
-  color: #fff;
-  margin: 0 auto;
-  width: 200px;
-  height: 50px;
-  border-radius: 5px;
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
+.signup-inner-container{
+  @include span-columns(6);
+  @include media($tablet) {
+    @include span-columns(6);
+  }
+}
+
+h1.signup-heading{
+  font-size: $mod-scale-3;
+  font-family: 'Nexus Three', Arial, sans-serif;
+  @include media($tablet) {
+    text-align: center;
+    padding: 0 10px;
+  }
+}
+
+p.signup-subheading{
+  font-weight: bold;
+  @include media($tablet) {
+    text-align: center;
+    padding: 0 10px;
+  }
+}
+
+
+.signup-form{
+  @include span-columns(6);
+  @include omega();
+  @include media($tablet) {
+    @include span-columns(6);
+    @include omega();
+  }
+}
+
+.signup-form-inner{
+  box-sizing: border-box;
+  width: 60%;
+  padding: 10px;
+  margin: 0 20%;
+  @include media($tablet) {
+    width: 100%;
+    margin: 0;
+  }
+}
+.form-inputs input {
+  @include submit-field-formatting;
+}
+
+.form-actions input{
+  @include submit-field-formatting;
+  // @include background-image(linear-gradient($green-lighter 0, $green-lightest 100%, transparent 50%));
+  // border-color: $green-darkest;
+  background-color: $buttons;
+  color: $white;
+  // &:hover{
+  //   @include background-image(linear-gradient($green-light 0, $green-dark 100%, transparent 50%));
+  // }
+}
+
+.signup-info{
+  font-size: $mod-scale-0;
+  padding: 0;
+  margin: 0 0 10px 0;
 }
 
 

@@ -1,9 +1,9 @@
+    <% if user_signed_in? && current_user.health_plan.present?%>
 <div class="container">
   <ul id="gn-menu" class="gn-menu-main">
-    <% if user_signed_in? %>
+
     <li class="gn-trigger">
       <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
-      <% if current_user.health_plan.present? %>
       <nav class="gn-menu-wrapper">
         <div class="gn-scroller">
           <ul class="gn-menu">
@@ -20,8 +20,8 @@
               <% end %>
             </li>
             <li>
-              <%= link_to new_user_health_plan_path do %>
-                <i class="gn-icon icon-stethoscope"></i>
+              <%= link_to user_health_plan_path(current_user.health_plan) do %>
+                <i class="gn-icon icon-medkit"></i>
                 <span>Health Plan</span>
               <% end %>
             </li>
@@ -41,9 +41,8 @@
         </div><!-- /gn-scroller -->
 
       </nav>
-      <%end%>
     </li>
-    <% end %>
+
     <% if user_signed_in? %>
       <li> <%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
       <li class ="gn-username"><%= current_user.username %></li>
@@ -53,3 +52,4 @@
       <% end %>
   </ul>
 </div><!-- /container -->
+    <% end %>

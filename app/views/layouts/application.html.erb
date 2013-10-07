@@ -14,10 +14,10 @@
   </head>
   <body>
 
-    <% if !user_signed_in? %>
-      <li><%= link_to "Sign up", new_user_registration_path %></li>
+  <!--   <% if !user_signed_in? %>
+
       <li><%= link_to "Login", new_user_session_path %></li>
-      <% end %>
+      <% end %> -->
     <%= render 'layouts/menu' %>
 
     <% flash.each do |name, msg| -%>

@@ -117,13 +117,27 @@ body{
   user-select: none;
 }
 
-.gn-menu-main > li.gn-username {
+.gn-menu-main > li.gn-username, {
   float: right;
   border: none;
   padding: 0 30px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
+}
+
+.gn-menu-main > li.gn-login{
+  float: right;
+  border-left: 1px solid #c6d0da;
+  border-right: none;
+}
+
+.gn-menu-main > li.gn-logo{
+  border-right: none;
+  padding: 0 30px;
+  font-weight: bold;
+  font-size: $mod-scale-2;
+
 }
 
 .gn-menu-main > li > a {
@@ -279,10 +293,22 @@ html {
 
 // CONTENT
 
+.outer-container{
+  background-image: image-url("android.png");
+  border-bottom: 1px solid $white;
+}
+
+.outer-container#blank{
+  background-image: none;
+  border-bottom: none;
+}
+
 .container{
   @include outer-container;
   padding: $mod-scale-3 0;
-
+  @include media($tablet) {
+    padding: $mod-scale-2 0;
+  }
 }
 
 .signup-inner-container{
@@ -348,6 +374,44 @@ p.signup-subheading{
   font-size: $mod-scale-0;
   padding: 0;
   margin: 0 0 10px 0;
+}
+
+.marketing-text{
+  text-align: center;
+  h1{
+    margin: 5px 0;
+  }
+  p{
+    margin: 5px 0 20px 0;
+  }
+}
+
+.marketing-info-box{
+  @include span-columns(4);
+  text-align: center;
+  @include media($tablet) {
+    @include span-columns(6);
+  }
+}
+
+.marketing-row:last-child{
+  @include omega();
+}
+
+.marketing-icon{
+  margin: $mod-scale-2;
+  color: $actions;
+  // i{
+  //   border: 1px solid $grey-light;
+  //   border-radius: 50%;
+  //   padding: 20px;
+  // }
+}
+
+.marketing-inner-container,
+.enterprise-inner-container{
+  @include span-columns(12);
+  @include omega();
 }
 
 

@@ -572,22 +572,55 @@ p.form-info {
   }
 }
 
-// .toggle:after {
-//   content: '✔';
-//   line-height: 43px; /* 40 + a couple of pixels visual adjustment */
-//   font-size: 20px;
-//   color: #d9d9d9;
-//   text-shadow: 0 -1px 0 #bfbfbf;
-// }
+.plan-list {
+    padding: $mod-scale-1;
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    @include media($tablet) {
+    width: 95%;
+  }
+}
 
-// .toggle:checked:after {
-//   color: #85ada7;
-//   text-shadow: 0 1px 0 #669991;
-//   bottom: 1px;
-//   position: relative;
-// }
+.plan-item {
+  display: inline-block;
+  width: 49%;
+  @include media($tablet) {
+    width: 100%;
+  }
+}
 
 
+.new_user_health_plan input {
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+  height: 150px;
+  margin-bottom: 10px;
+  padding: 10px;
+  line-height: $mod-scale-1;
+  border: 1px solid $buttons;
+  border-radius: 3px;
+  background-color: $buttons;
+  font-size: $mod-scale-1;
+  color: $white;
+  @include media($tablet) {
+   width: 100%;
+  }
+}
 
+.new_user_health_plan input:hover {
+  border: 1px solid $actions;
+  background-color: $actions;
 
+}
+
+.health-plan-text {
+  padding: 0 $mod-scale-2;
+}
+
+.risk-header {
+  font-family: 'Nexus Three', Arial, sans-serif;
+  color: $actions;
+}
 

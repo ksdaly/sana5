@@ -460,9 +460,10 @@ p.signup-subheading{
 // }
 
 .todo{
-
-    vertical-align: middle;
-
+  position: relative;
+  padding-left: 40px;
+  vertical-align: middle;
+  display: block;
 }
 
 input[type="checkbox"],
@@ -482,10 +483,14 @@ input[type="radio"] + label.collection_radio_buttons:before {
 
 input[type="checkbox"] + label.todo:before {
   content: "\f096"; /* check-empty */
+  position: absolute;
+  left: 0px;
 }
 
 input[type="checkbox"]:checked + label.todo:before {
   content: "\f046"; /* check */
+  position: absolute;
+  left: 0px;
 }
 
 input[type="radio"] + label.collection_radio_buttons:before {

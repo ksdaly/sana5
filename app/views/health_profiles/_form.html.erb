@@ -1,25 +1,32 @@
-<%= simple_form_for @health_profile, html: { novalidate: true } do |f| %>
-  <%= f.input :dob, as: :date, start_year: Date.today.year - 12,
-                              end_year: Date.today.year - 90,
-                              order: [:month, :day, :year] %>
-  <%= f.collection_radio_buttons :male, [[true, 'Male'] ,[false, 'Female']], :first, :last %>
-  <%= f.input :weight, placeholder: 'Weight in pounds', label: false, as: :string %>
-  <%= f.input :height, placeholder: 'Height in inches', label: false, as: :string %>
-  <%= f.input :systolic_bp, placeholder: 'Systolic blood pressure', label: false, as: :string %>
-  <%= f.input :diastolic_bp, placeholder: 'Diastolic blood pressure', label: false, as: :string %>
-  <%= f.input :antihypertensive_drugs, label: 'I am taking antihypertension drugs' %>
-  <%= f.input :steroid_drugs, label: 'I am taking steroid drugs' %>
-  <%= f.input :diabetes, label: 'I have diabetes' %>
-  <%= f.input :parent_with_diabetes, label: 'At least one of my parents has diabetes' %>
-  <%= f.input :sibling_with_diabetes, label: 'At least one of my siblings has diabetes' %>
-  <%= f.input :smoker, label: 'I am a smoker' %>
-  <%= f.input :exsmoker, label: 'I am an exsmoker' %>
-  <%= f.submit 'Submit' %>
+<div class='form-container'>
+  <div class="main">
+    <ul class="form-list">
+      <%= simple_form_for @health_profile, html: { novalidate: true } do |f| %>
+      <p class="form-info">Required information:</p>
+        <div class="health_profile_gender">
+          <label class="hp">Gender</label>
+          <%= f.collection_radio_buttons :male, [[true, 'Male'] ,[false, 'Female']], :first, :last %>
+        </div>
+        <%= f.input :dob, as: :string, label: "Birthday", placeholder: "MM/DD/YYYY" %>
 
-
-<% end %>
-
-<!-- <input id="health_profile_male_true" name="health=profile[male]" type="radio" value="true" />
-<label class="collection_radio_buttons" for="health_profile_male_true">Male</label>
-<input id="health_profile_male_false" name="health=profile[male]" type="radio" value="false" />
-<label class="collection_radio_buttons" for="health_profile_male_false">Female</label> -->
+        <%= f.input :weight, placeholder: 'pounds',  as: :string %>
+        <%= f.input :height, placeholder: 'inches',  as: :string %>
+        <label class="hp">Blood Pressure</label>
+        <%= f.input :systolic_bp, label: false, placeholder: '123', as: :string %>
+        <span> / </span>
+        <%= f.input :diastolic_bp, label: false, placeholder: '12', as: :string %>
+        <p class="form-info">Chack that apply:</p>
+        <%= f.input :antihypertensive_drugs, label: 'I am taking antihypertension drugs', label_html: { class: 'conditions'}, label_html: {class: 'todo'}, input_html: {class: 'toggle'} %>
+        <%= f.input :steroid_drugs, label: 'I am taking steroid drugs', label_html: {class: 'todo'}, input_html: {class: 'toggle'} %>
+        <%= f.input :diabetes, label: 'I have diabetes', label_html: {class: 'todo'}, input_html: {class: 'toggle'} %>
+        <%= f.input :parent_with_diabetes, label: 'At least one of my parents has diabetes', label_html: {class: 'todo'}, input_html: {class: 'toggle'} %>
+        <%= f.input :sibling_with_diabetes, label: 'At least one of my siblings has diabetes', label_html: {class: 'todo'}, input_html: {class: 'toggle'} %>
+        <%= f.input :smoker, label: 'I am a smoker', label_html: {class: 'todo'}, input_html: {class: 'toggle'} %>
+        <%= f.input :exsmoker, label: 'I am an exsmoker', label_html: {class: 'todo'}, input_html: {class: 'toggle'} %>
+        <div class="form-actions health-profile-form">
+          <%= f.submit 'Submit Health Profile' %>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div>

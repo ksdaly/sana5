@@ -4,7 +4,7 @@ class HealthProfilesController < ApplicationController
   before_action :require_patient!, only: [:show, :edit, :update, :destroy]
 
   def index
-
+    @health_profile = HealthProfile.where(user_id: current_user.id).last
   end
 
   def edit

@@ -20,6 +20,8 @@ FactoryGirl.define do
     parent_with_diabetes false
     sibling_with_diabetes false
     exsmoker false
+    cardiovascular_risk 1.34
+    diabetes_risk 0.46
   end
 
   factory :health_plan do
@@ -44,7 +46,7 @@ FactoryGirl.define do
     user
     to_do
     completed false
-    day { Time.now }
+    day { Date.today }
   end
 
 end

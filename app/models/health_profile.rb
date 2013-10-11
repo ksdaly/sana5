@@ -23,7 +23,7 @@ class HealthProfile < ActiveRecord::Base
   def calculate_risks
     self.cardiovascular_risk = cardiovascular_risk_calculation
     self.diabetes_risk = diabetes_risk_calculation
-    self.save
+    self.save!
   end
 
   def cardiovascular_risk_calculation
@@ -59,5 +59,7 @@ class HealthProfile < ActiveRecord::Base
     self.created_at.beginning_of_day.to_i * 1000
   end
 
-
+  def self.delta(variable)
+    self.last.send(variable.to_sym) - self.first.send(variable.to_sym)
+  end
 end

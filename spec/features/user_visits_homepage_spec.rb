@@ -13,13 +13,7 @@ feature 'user vists homepage', %Q{
 
   scenario 'unauthenticated user has access to homepage' do
     visit root_path
-    expect(page).to have_content('changes that matter')
-  end
-
-  scenario 'unauthenticated user has access to homepage' do
-    visit root_path
-    click_on 'Sign up'
-    expect(current_path).to eql(new_user_registration_path)
+    expect(page).to have_content('Sign up for Sana')
   end
 
   scenario 'unauthenticated user has no access to non-homepage' do

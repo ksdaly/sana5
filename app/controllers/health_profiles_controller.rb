@@ -1,10 +1,10 @@
 class HealthProfilesController < ApplicationController
   before_action :set_health_profile, only: [:show, :edit, :update, :destroy]
 
-  before_action :require_patient!, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy] do  |x| x.require_patient! @health_profile end
 
   def index
-
+    @health_profiles = HealthProfile.where(user_id: current_user.id)
   end
 
   def edit
@@ -20,6 +20,7 @@ class HealthProfilesController < ApplicationController
   def create
     @health_profile = HealthProfile.new(health_profile_params)
     @health_profile.user = current_user
+    #TODO: eliminate duplication
     if @health_profile.save
       @health_profile.calculate_risks
       redirect_to new_user_health_plan_path, notice: 'Health profile created!'
@@ -36,7 +37,7 @@ class HealthProfilesController < ApplicationController
 
     if @health_profile.update(health_profile_params)
       @health_profile.calculate_risks
-      redirect_to @health_profile, notice: 'profile was successfully updated.'
+      redirect_to health_profiles_path, notice: 'profile was successfully updated.'
     else
       render action: 'edit'
     end
@@ -46,7 +47,7 @@ class HealthProfilesController < ApplicationController
 
     def old_profile?
       # @health_profile.updated_at.to_date.beginning_of_day != Time.now.utc.to_date
-      @health_profile.updated_at.to_date != Time.now.utc.to_date
+      @health_profile.created_at.to_date != Time.now.utc.to_date
     end
 
     def set_health_profile
@@ -59,9 +60,4 @@ class HealthProfilesController < ApplicationController
         :sibling_with_diabetes, :smoker, :exsmoker, :cardiovascular_risk, :diabetes_risk)
     end
 
-    def require_patient!
-      unless current_user.id == @health_profile.user.id
-        access_denied
-      end
-    end
 end

@@ -3,13 +3,16 @@ require 'spec_helper'
 feature 'user signs in',%Q{
   As a registered user
   I want to sign in
-  So that I can access my health plan and track my progress
+  So that I can access my profile and track my progress
 } do
 
   # ACCEPTANCE CRITERIA
   # * If I  specify a valid previously registered email and password, I am authenticated and gain access to my profile
   # * If I specify invalid email and password I am not authenticated and an error message is displayed
   # * If I am already signed in, I can't sign in again
+  # * If I don't have a health profile, I am redirected to new profile form
+  # * If I don't have a user health plan, I am redirected to new user health plan form
+  # * If i have health profile and user health plan, I am redirected to user to-dos
 
   scenario 'an existing user specifys a valid email and password' do
     user = FactoryGirl.create(:user)
@@ -49,6 +52,25 @@ feature 'user signs in',%Q{
     sign_in_as(user)
     expect(page).to have_content("Logout")
     expect(page).to_not have_content('Login')
+  end
+
+  scenario 'user without health profile is redirected to new health profile' do
+    user = FactoryGirl.create(:user)
+    sign_in_as(user)
+    expect(current_path).to eql(new_health_profile_path)
+  end
+
+  scenario 'user without user health plan is redirected to new user health plan' do
+    health_profile = FactoryGirl.create(:health_profile)
+    sign_in_as(health_profile.user)
+    expect(current_path).to eql(new_user_health_plan_path)
+  end
+
+  scenario 'user with health profile and user health plan is redirected to user to dos' do
+    health_profile = FactoryGirl.create(:health_profile)
+    user_health_plan = FactoryGirl.create(:user_health_plan, user: health_profile.user)
+    sign_in_as(health_profile.user)
+    expect(current_path).to eql(user_to_dos_path)
   end
 
 end

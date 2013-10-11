@@ -29,11 +29,6 @@ module Seeders
             title: "Heart plan",
             description: "Join our 16-week program and learn to change the factors that put you at risk for cardiovascular diseases.",
             plan_length_days: 21
-          },
-          {
-            title: "Wellness plan",
-            description: "In 16 weeks, you’ll be well on your way to a healthier lifestyle.",
-            plan_length_days: 21
           }
         ]
       end

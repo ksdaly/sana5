@@ -46,7 +46,7 @@ FactoryGirl.define do
     user
     to_do
     completed false
-    day { Time.now }
+    day { Date.today }
   end
 
 end

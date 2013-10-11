@@ -1,28 +1,27 @@
 require 'spec_helper'
 
 feature 'User creates health profile', %Q{
-As a health concious person
-I want to create a user profile
-So that I can review my health risks
+    As a health concious person
+    I want to create a user profile
+    So that I can review my health risks
 } do
 
-# ACCEPTANCE CRITERIA
-# * I must specify all valid information by filling out a form
-# * If I don't specify valid information, I get an error
-# * If I specify the required information, the information is recorded and my health risk evaluation is displayed
+  # ACCEPTANCE CRITERIA
+  # * I must specify all valid information by filling out a form
+  # * If I don't specify valid information, I get an error
+  # * If I specify the required information, the information is recorded and my health risk evaluation is displayed
+  # * If I create my first health profile, I am redirected to new user health plan
 
     let!(:user1) {FactoryGirl.create(:user)}
     let(:health_profile) {FactoryGirl.create(:health_profile, user: user1)}
-    let(:old_health_profile) {FactoryGirl.create(:health_profile, user: user1, updated_at: Time.now - 1.year )}
+    let(:old_health_profile) {FactoryGirl.create(:health_profile, user: user1, created_at: Time.now - 1.year )}
+    let!(:user_health_plan) {FactoryGirl.create(:user_health_plan, user: user1 )}
 
   scenario 'user creates health profile' do
     sign_in_as(user1)
     visit new_health_profile_path
-
     choose "health_profile_male_true"
-    select "1984", from: "health_profile_dob_1i"
-    select "April", from: "health_profile_dob_2i"
-    select "12", from: "health_profile_dob_3i"
+    fill_in "health_profile_dob", with: "1984-04-12"
     fill_in "health_profile_weight", with: 135
     fill_in "health_profile_height", with: 67
     fill_in "health_profile_systolic_bp", with: 140
@@ -33,13 +32,13 @@ So that I can review my health risks
     expect(current_path).to eql(new_user_health_plan_path)
   end
 
- it 'user sees applicable errors' do
-    visit new_health_profile_path
-    sign_in_as(user1)
+ # it 'user sees applicable errors' do
+ #    visit new_health_profile_path
+ #    sign_in_as(user1)
 
-    click_button 'Submit'
-    expect_presence_error_for(:weight)
-  end
+ #    click_button 'Submit'
+ #    expect_presence_error_for(:weight)
+ #  end
 
   scenario 'user edits health profile' do
     health_profile
@@ -69,10 +68,9 @@ So that I can review my health risks
 
 end
 
-def expect_presence_error_for(attribute)
-  within ".input.health_profile_#{attribute.to_s}" do
+  def expect_presence_error_for(attribute)
+    within ".input.health_profile_#{attribute.to_s}" do
     expect(page).to have_content "can't be blank"
   end
-
 
 end

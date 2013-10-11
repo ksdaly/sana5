@@ -1,6 +1,9 @@
 class UserHealthPlansController < ApplicationController
   before_action :set_user_health_plan, only: [:show, :edit, :update, :destroy]
 
+    before_action only: [:show, :edit, :update, :destroy] do  |x| x.require_patient! @user_health_plan end
+
+
   def show
   end
 
@@ -28,5 +31,6 @@ class UserHealthPlansController < ApplicationController
   def user_health_plan_params
     params.require(:user_health_plan).permit(:user_id, :health_plan_id)
   end
+
 
 end

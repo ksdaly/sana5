@@ -10,6 +10,8 @@ feature 'User selects a health plan', %Q{
   # * I must have a valid health profile
   # * If I have a valid health profile, I can select a health plan
   # * If I select a health plan, a health plan is registered for me
+  # * After a health plan is registered, a set of user todos are registered for me
+  # * If I select a health plan, I get redirected to user todos
 
   let(:user1) {FactoryGirl.create(:user)}
   let!(:health_profile1) {FactoryGirl.create(:health_profile, user: user1)}
@@ -21,6 +23,7 @@ feature 'User selects a health plan', %Q{
     click_on health_plan.title
     expect(page).to have_content('Health plan created!')
     expect(current_path).to eql(user_to_dos_path)
+    expect(user1.user_to_dos).to_not eql(nil)
   end
 
 end

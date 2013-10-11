@@ -2,28 +2,50 @@
   <div class="container">
 
     <div class="profile-container">
-      <span>Weight:</span>
-      <span><%= @health_profile.weight %> lb</span>
+      <p>
+        <span>Weight:</span>
+        <span><%= @health_profiles.last.weight %> lb</span>
+      </p>
+      <p>
+        <span>Change:</span>
+        <span><%= @health_profiles.delta("weight") %> lb</span>
+      </p>
     </div>
 
     <div class="profile-container">
       <span>BMI:</span>
-      <span><%= @health_profile.calculated_bmi %></span>
+      <span><%= @health_profiles.last.calculated_bmi %></span>
+      <p>
+        <span>Change:</span>
+        <span><%= @health_profiles.delta("calculated_bmi") %></span>
+      </p>
     </div>
 
     <div class="profile-container">
       <span>Blood Pressure:</span>
-      <span><%= @health_profile.systolic_bp %> / <%= @health_profile.diastolic_bp %> mmHg</span>
+      <span><%= @health_profiles.last.systolic_bp %> / <%= @health_profiles.last.diastolic_bp %></span>
+       <p>
+        <span>Change:</span>
+        <span><%= @health_profiles.delta("systolic_bp") %> / <%= @health_profiles.delta("diastolic_bp") %> mmHg</span>
+      </p>
     </div>
 
     <div class="profile-container">
       <span>Cardiovasular Risk:</span>
-      <span><%= @health_profile.cardiovascular_risk %>%</span>
+      <span><%= @health_profiles.last.cardiovascular_risk %>%</span>
+      <p>
+        <span>Change:</span>
+        <span><%= @health_profiles.delta("cardiovascular_risk") %> percent points</span>
+      </p>
     </div>
 
     <div class="profile-container">
       <span>Diabetes Risk:</span>
-      <span><%= @health_profile.diabetes_risk %>%</span>
+      <span><%= @health_profiles.last.diabetes_risk %>%</span>
+       <p>
+        <span>Change:</span>
+        <span><%= @health_profiles.delta("diabetes_risk") %>percent points</span>
+      </p>
     </div>
 
 

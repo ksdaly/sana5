@@ -4,16 +4,12 @@
 
       <%= simple_form_for @health_profile, html: { novalidate: true } do |f| %>
 
-      <p class="form-info">Required information:</p>
+      <p class="form-info">Enter changes:</p>
 
-        <div class="health_profile_gender">
-          <label class="hp">Gender</label>
-          <%= f.collection_radio_buttons  :male, [[true, 'Male'] ,[false, 'Female']],
-                                          :first,
-                                          :last %>
-        </div>
+        <%= f.hidden_field  :male %>
 
-        <%= f.input :dob,
+
+        <%= f.hidden_field :dob,
                     as: :string,
                     label: "Birthday",
                     placeholder: "YYYY-MM-DD",
@@ -24,7 +20,7 @@
                     placeholder: 'pounds',
                     error: false %>
 
-        <%= f.input :height,
+        <%= f.hidden_field :height,
                     as: :string,
                     placeholder: 'inches',
                     error: false %>
@@ -41,8 +37,6 @@
                     label: false,
                     placeholder: '12',
                     error: false %>
-
-        <p class="form-info">Check all that apply:</p>
 
         <%= f.input :antihypertensive_drugs,
                     label: 'I am taking antihypertension drugs',

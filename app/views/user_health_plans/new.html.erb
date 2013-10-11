@@ -1,21 +1,33 @@
-<p>
-  <strong>Cardiovascular risk:</strong>
-  <%= current_user.health_profiles.last.cardiovascular_risk %>
-</p>
+<div class="outer-container" id="blank">
+  <div class="container">
+    <div class="health-plan-text">
+      <p class="risk-header">
+        <strong>Your Cardiovascular risk:</strong>
+        <%= current_user.health_profiles.last.cardiovascular_risk %>%
+      </p>
+      <p>The Framingham Risk Score is an estimate of the probability that you will develop cardiovascular disease within 10 years. Please choose <span>heart plan</span> if you wish to focus on reducing your cardiovascular risk.</p>
 
-<p>
-  <strong>Diabetes risk:</strong>
-  <%= current_user.health_profiles.last.diabetes_risk %>
-</p>
+      <p class="risk-header">
+        <strong>Your Diabetes risk:</strong>
+        <%= current_user.health_profiles.last.diabetes_risk %>%
+      </p>
 
-<% UserHealthPlan.options.each do |health_plan| %>
+      <p>The Cambridge Diabetes Score is a simple, effective tool for the identification of those at increased risk of future incident diabetes, as well as prevalent undiagnosed diabetes. Please choose <span>diabetes plan</span> if you wish to focus on reducing your diabetes risk.</p>
+    </div>
 
-  <%= simple_form_for @user_health_plan do |f| %>
-    <%= f.hidden_field :health_plan_id, value: health_plan.id %>
-    <%= f.submit health_plan.title %>
-  <% end %>
-<% end %>
+    <div class="plan-list">
+    <% UserHealthPlan.options.each do |health_plan| %>
 
+      <div class="plan-item">
+        <%= simple_form_for @user_health_plan do |f| %>
+          <%= f.hidden_field :health_plan_id, value: health_plan.id %>
+          <%= f.submit health_plan.title %>
+        <% end %>
+      </div>
+    <% end %>
+   </div>
+  </div>
+</div>
 
 
 

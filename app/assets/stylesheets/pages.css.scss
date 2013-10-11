@@ -414,4 +414,233 @@ p.signup-subheading{
   @include omega();
 }
 
+.form-container {
+  background: #fff;
+  margin: $mod-scale-2 auto;
+  border: 1px solid #ccc;
+  position: relative;
+  // border-top-left-radius: 2px;
+  // border-top-right-radius: 2px;
+  width: 50%;
+  @include media($tablet) {
+    width: 95%;
+  }
+}
+
+// .todo-container:before {
+//   content: '';
+//   // border-left: 1px solid #f5d6d6;
+//   // border-right: 1px solid #f5d6d6;
+//   width: 2px;
+//   position: absolute;
+//   top: 0;
+//   left: 40px;
+//   height: 100%;
+// }
+
+.main {
+  position: relative;
+  z-index: 2;
+  // border-top: 1px dotted #adadad;
+}
+
+.form-list {
+  margin: 0;
+  padding: $mod-scale-2;
+  list-style: none;
+}
+
+.form-list li {
+  position: relative;
+  height: $mod-scale-2;
+}
+
+// .todo-list li:last-child {
+//   border-bottom: none;
+// }
+
+.todo{
+  position: relative;
+  padding-left: 40px;
+  vertical-align: middle;
+  display: block;
+}
+
+input[type="checkbox"],
+[type="radio"] {
+  display: none;
+}
+
+input[type="checkbox"] + label.todo:before,
+input[type="radio"] + label.collection_radio_buttons:before {
+  font-family: 'FontAwesome';
+  font-size: $mod-scale-1;
+  width: $mod-scale-2;
+  color: $buttons;
+  display: inline-block;
+  vertical-align:middle;
+}
+
+input[type="checkbox"] + label.todo:before {
+  content: "\f096"; /* check-empty */
+  position: absolute;
+  left: 0px;
+}
+
+input[type="checkbox"]:checked + label.todo:before {
+  content: "\f046"; /* check */
+  position: absolute;
+  left: 0px;
+}
+
+input[type="radio"] + label.collection_radio_buttons:before {
+   content: "\f10c"; /* check-empty */
+}
+
+input[type="radio"]:checked + label.collection_radio_buttons:before {
+   content: "\f111"; /* check */
+}
+
+label.collection_radio_buttons {
+  padding-right: $mod-scale-0;
+}
+
+.form-list input[type="text"] {
+  @include submit-field-formatting;
+}
+
+.health_profile_systolic_bp,
+.health_profile_diastolic_bp {
+  display: inline-block;
+  width: 30%;
+}
+
+input#health_profile_dob,
+input#health_profile_weight,
+input#health_profile_height {
+  display: inline-block;
+  width: 30%;
+  @include media($tablet) {
+    width: 50%;
+  }
+}
+
+
+.health_profile_dob label,
+.health_profile_weight label,
+.health_profile_height label {
+  display: inline-block;
+  width: 25%;
+}
+
+.hp{
+  display: inline-block;
+  width: 24%;
+}
+
+abbr {
+  display: none;
+}
+
+.health_profile_gender{
+  margin-bottom: 10px;
+}
+
+p.form-info {
+  font-family: 'Nexus Three', Arial, sans-serif;
+}
+
+.form-actions.health-profile-form{
+  padding-top: $mod-scale-2;
+}
+
+.toggle {
+  text-align: center;
+  width: 40px;
+  /* auto, since non-WebKit browsers doesn't support input styling */
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  border: none; /* Mobile Safari */
+  -webkit-appearance: none;
+  /*-moz-appearance: none;*/
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+.field_with_errors {
+  input[type=text]{
+    border-color: $actions;
+  }
+}
+
+.plan-list {
+    padding: $mod-scale-1;
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    @include media($tablet) {
+    width: 95%;
+  }
+}
+
+.plan-item {
+  display: inline-block;
+  width: 49%;
+  @include media($tablet) {
+    width: 100%;
+  }
+}
+
+
+.new_user_health_plan input {
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+  height: 150px;
+  margin-bottom: 10px;
+  padding: 10px;
+  line-height: $mod-scale-1;
+  border: 1px solid $buttons;
+  border-radius: 3px;
+  background-color: $buttons;
+  font-size: $mod-scale-1;
+  color: $white;
+  @include media($tablet) {
+   width: 100%;
+  }
+}
+
+.new_user_health_plan input:hover {
+  border: 1px solid $actions;
+  background-color: $actions;
+
+}
+
+.health-plan-text {
+  padding: 0 $mod-scale-2;
+}
+
+.risk-header {
+  font-family: 'Nexus Three', Arial, sans-serif;
+  color: $actions;
+}
+
+#profile_chart {
+  width: 500px;
+
+}
+
+#completion_chart {
+  width: 200px;
+}
+
+// .health_profile_gender.update {
+//   display: none;
+// }
+
+
 

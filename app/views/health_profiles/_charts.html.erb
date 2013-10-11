@@ -1,0 +1,87 @@
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('#profile_chart').highcharts({
+      chart: {
+        type: 'spline',
+        backgroundColor:'transparent'
+      },
+      credits: {
+        enabled: false
+      },
+      title: {
+        text: 'Health Risks'
+      },
+      xAxis: {
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          day: '%e. %b',
+        }
+      },
+      yAxis: {
+        title: { text: '%'}
+      },
+      series: [{
+        animation: false,
+        name: 'Cardiovascular Risk',
+        data: <%= HealthProfile.risk_array(current_user, 'cardiovascular_risk') %>
+      },
+      {
+        animation: false,
+        name: 'Diabetes Risk',
+        data: <%= HealthProfile.risk_array(current_user, 'diabetes_risk') %>
+      }]
+    });
+
+
+    var data = <%= UserHealthPlan.completion_array(current_user) %>
+        categories = ['Complete', 'Incomplete']
+        planData = []
+
+    for (var i = 0; i < data.length; i++){
+      planData.push([categories[i], data[i]]);
+    };
+
+
+    $('#completion_chart').highcharts({
+      chart: {
+        type: 'pie',
+        backgroundColor:'transparent'
+      },
+      credits: {
+        enabled: false
+      },
+      tooltip: {
+        pointFormat: '{point.percentage:.0f}%'
+      },
+      title: {
+        text: 'Health Plan Progress',
+      },
+      plotOptions: {
+        pie: {
+          innerSize: '65%',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true,
+          point: {
+            events: {
+              legendItemClick: function (e) {e.preventDefault()}
+            }
+          }
+        }
+      },
+      legend: {
+        itemHoverStyle: {
+          cursor: 'default'
+        }
+      },
+      series: [{
+        animation: false,
+        name: 'Health Plan',
+        data: planData
+      }]
+    }
+  );
+});
+
+</script>

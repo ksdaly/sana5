@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+
   protected
 
   def access_denied
@@ -15,4 +16,20 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :username
   end
 
+
+  def require_patient!(resource)
+    unless current_user.id == resource.user.id
+      access_denied
+    end
+  end
+
+  def after_sign_in_path_for(resource)
+    if resource.health_profiles.blank?
+      new_health_profile_path
+    elsif resource.health_plan.blank?
+      new_user_health_plan_path
+    else
+      user_to_dos_path
+    end
+  end
 end

@@ -5,6 +5,8 @@ describe HealthProfile do
 
   it {should belong_to(:user)}
 
+  it {should have_valid(:user)}
+
   it {should have_valid(:dob).when('04/12/1984')}
   it {should have_valid(:weight).when(120, 98)}
   it {should_not have_valid(:weight).when(1, 1000, nil)}

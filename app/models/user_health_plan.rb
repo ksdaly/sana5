@@ -20,6 +20,8 @@ class UserHealthPlan < ActiveRecord::Base
     ToDo.where(health_plan_id: self.health_plan.id)
   end
 
+
+#TODO subgroups no more than one from each a day
   def get_daily_todos
     get_plan_todos.sample(3)
   end

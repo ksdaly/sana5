@@ -26,6 +26,7 @@ class DiabetesRisk
     @health_profile.calculated_age * 0.063
   end
 
+#TODO add else
   def bmi_score
     case @health_profile.calculated_bmi
     when 0..25.00 then 0

@@ -311,7 +311,8 @@ html {
   }
 }
 
-.signup-inner-container{
+.signup-inner-container,
+.dash-inner-container {
   @include span-columns(6);
   @include media($tablet) {
     @include span-columns(6);
@@ -336,7 +337,9 @@ p.signup-subheading{
 }
 
 
-.signup-form{
+.signup-form,
+.dash-chart,
+.plan-chart {
   @include span-columns(6);
   @include omega();
   @include media($tablet) {
@@ -452,7 +455,7 @@ p.signup-subheading{
 
 .form-list li {
   position: relative;
-  height: $mod-scale-2;
+
 }
 
 // .todo-list li:last-child {
@@ -460,6 +463,7 @@ p.signup-subheading{
 // }
 
 .todo{
+  padding-bottom: 10px;
   position: relative;
   padding-left: 40px;
   vertical-align: middle;
@@ -629,18 +633,41 @@ p.form-info {
   color: $actions;
 }
 
-#profile_chart {
-  width: 500px;
 
-}
 
 #completion_chart {
-  width: 200px;
+  width: 100%;
 }
 
-// .health_profile_gender.update {
-//   display: none;
-// }
+.dash-wrapper {
+    box-sizing: border-box;
+    padding: 0 $mod-scale-1 $mod-scale-3;
+}
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.dash-table th {
+  font-family: 'Nexus Three', Arial, sans-serif;
+  padding: 10px 0;
+  border-bottom: 2px solid $text;
+}
+
+.dash-table td {
+  padding: 5px 0;
+}
+
+.dash-table tbody tr:hover td {
+  color: $actions;
+
+}
+
+.plan-heading span {
+  font-family: 'Nexus Three', Arial, sans-serif;
+  text-transform: uppercase;
+}
 
 
 

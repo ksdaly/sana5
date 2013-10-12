@@ -75,7 +75,8 @@ body{
 }
 
 .gn-menu-main {
-  // position: fixed;
+  position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;
@@ -294,6 +295,7 @@ html {
 // CONTENT
 
 .outer-container{
+  margin: 40px 0 0;
   background-image: image-url("android.png");
   border-bottom: 1px solid $white;
 }
@@ -669,5 +671,14 @@ p.form-info {
   text-transform: uppercase;
 }
 
+
+.signin-form{
+  width: 50%;
+  margin: 0 auto;
+  @include media($tablet) {
+   width: 95%;
+  }
+
+}
 
 

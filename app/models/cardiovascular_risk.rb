@@ -33,7 +33,7 @@ class CardiovascularRisk
   def beta_x_age
     age_log * (@health_profile.male ? 3.11296 : 2.72107)
   end
-
+#TODO make into if
   def beta_x_bp
     case @health_profile.male
     when true

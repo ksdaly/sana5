@@ -623,3 +623,10 @@ p.form-info {
    width: $mobile-width;
   }
 }
+
+.instruction-container {
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: $mod-scale-1;
+}

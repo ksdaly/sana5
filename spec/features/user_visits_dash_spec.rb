@@ -29,7 +29,11 @@ end
 
 def expect_delta
   ["weight", "calculated_bmi", "systolic_bp", "diastolic_bp", "cardiovascular_risk", "diabetes_risk"].each do |variable|
-    expect(page).to have_content(@user.health_profiles.delta(variable))
+    unless variable == "calculated_bmi"
+      expect(page).to have_content(@user.health_profiles.delta(variable))
+    else
+      expect(page).to have_content(@user.health_profiles.delta(variable).round(2))
+    end
   end
 end
 

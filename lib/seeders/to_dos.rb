@@ -4,17 +4,31 @@ module Seeders
     class << self
 
       def seed
-        to_dos.each do |attributes|
+        seed_plan("Diabetes plan")
+        seed_plan("Heart plan")
+      end
+
+      def seed_plan(plan_name)
+        list = pick_todos(plan_name)
+        list.each do |attributes|
           to_do = ToDo.where(title: attributes[:title]).first
           if to_do.nil?
             to_do = ToDo.new
             to_do.title = attributes[:title]
             to_do.description = attributes[:description]
-            to_do.health_plan_id = HealthPlan.where(title: "Diabetes plan").first.id
+            to_do.health_plan_id = HealthPlan.where(title: plan_name).first.id
           else
             to_do.update_attributes(attributes)
           end
           to_do.save!
+        end
+      end
+
+      def pick_todos(plan_name)
+        if plan_name == "Diabetes plan"
+          to_dos
+        elsif plan_name == "Heart plan"
+          to_dos
         end
       end
 

@@ -25,6 +25,7 @@ feature 'user views to-dos', %Q{
     sign_in_as(user1)
     visit user_to_dos_path
     expect(page).to have_content(to_do_1.title)
+    expect(page).to have_content(Date.today)
   end
 
   scenario 'user is able to view only their own to-dos' do

@@ -4,6 +4,8 @@ $buttons: #68B5A8;
 $background: #f5f4f0;
 $text: #4a4643;
 $white: #ffffff;
+$borders: #c6d0da;
+$dark-text: #6a6967;
 
 // MODULAR SCALE
 $mod-scale-0: modular-scale(14px, 0, 1.618);
@@ -11,8 +13,14 @@ $mod-scale-1: modular-scale(14px, 1, 1.618);
 $mod-scale-2: modular-scale(14px, 2, 1.618);
 $mod-scale-3: modular-scale(14px, 3, 1.618);
 
+//FORMATTING
+$light-border: 1px solid $borders;
+$typeface: 'Roboto Condensed', Arial, sans-serif;
+$menu-height: 60px;
+$mobile-width: 95%;
+
 //MIXINS
-@mixin submit-field-formatting{
+@mixin submit-field-formatting {
   width: 100%;
   margin-bottom: 10px;
   padding: 10px;
@@ -21,11 +29,23 @@ $mod-scale-3: modular-scale(14px, 3, 1.618);
   border-radius: 3px;
 }
 
-//grid
+@mixin menu-formatting {
+  padding: 0;
+  background: white;
+  color: #6A6967;
+  list-style: none;
+  text-transform: none;
+  font-weight: 400;
+  font-family: 'Roboto Condensed', sans-serif;
+  line-height: 60px;
+}
+
+//GRID
 $mobile: new-breakpoint(max-width 500px 6);
 $tablet: new-breakpoint(max-width 769px 6);
 
 
+//GENERAL
 
 *,
 *:after,
@@ -34,66 +54,55 @@ $tablet: new-breakpoint(max-width 769px 6);
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-@font-face {
-  font-family: 'Nexus One';
-  src: url(http://themes.googleusercontent.com/static/fonts/roboto/v9/vzIUHo9z-oJ4WgkpPOtg13YhjbSpvc47ee6xR_80Hnw.woff) format('woff');
-}
 
 @font-face {
-  font-family: 'Nexus Two';
-  src: url(http://themes.googleusercontent.com/static/fonts/roboto/v9/Hgo13k-tfSpn0qi1SFdUfbO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+  font-family: 'Roboto Condensed', Arial, sans-serif;
+  @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300);
 }
 
-@font-face {
-  font-family: 'Nexus Three';
-  src: url(http://themes.googleusercontent.com/static/fonts/roboto/v9/d-6IYplOFocCacKzxwXSOLO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+html {
+  background-color: $background;
+  color: $text;
 }
 
 body{
-  font-family: 'Nexus Two', Arial, sans-serif;
-}
-
-.gn-menu-main,
-.gn-menu-main ul {
-  margin: 0;
-  padding: 0;
-  background: white;
-  color: #6A6967;
-  list-style: none;
-  text-transform: none;
   font-weight: 400;
-  font-family: 'Nexus Three', Arial, sans-serif;
-  line-height: 60px;
+  font-family: $typeface;
 }
+
+//MENU
 
 .gn-menu-main {
-  font-family: 'Nexus Three', Arial, sans-serif;
-}
-
-.gn-menu-main ul {
-  font-family: 'Nexus One', Arial, sans-serif;
-}
-
-.gn-menu-main {
+  @include menu-formatting;
+  font-weight: 700;
   position: fixed;
   z-index: 1000;
   top: 0;
   left: 0;
+  margin: 0;
   width: 100%;
-  height: 60px;
-  font-size: 13px;
-}
-
-.gn-menu-main a {
-  display: block;
-  height: 100%;
-  color: #6A6967;
-  text-decoration: none;
-  cursor: pointer;
+  height: $menu-height;
+  font-size: $mod-scale-0;
+  &:after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+  ul {
+    @include menu-formatting;
+    font-weight: 300;
+  }
+  a {
+    display: block;
+    height: 100%;
+    color: $dark-text;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 
 .no-touch .gn-menu-main a:hover {
-  background: #6A6967;
+  background: $dark-text;
   color: white;
 }
 
@@ -101,69 +110,55 @@ body{
   display: block;
   float: left;
   height: 100%;
-  border-right: 1px solid #c6d0da;
+  border-right: $light-border;
   text-align: center;
-}
-
-/* icon-only trigger (menu item) */
-
-.gn-menu-main li.gn-trigger {
-  position: relative;
-  width: 60px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.gn-menu-main > li.gn-username, {
-  float: right;
-  border: none;
-  padding: 0 30px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-
-.gn-menu-main > li.gn-login{
-  float: right;
-  border-left: 1px solid #c6d0da;
-  border-right: none;
-}
-
-.gn-menu-main > li.gn-logo{
-  border-right: none;
-  padding: 0 30px;
-  font-weight: bold;
-  font-size: $mod-scale-2;
-
-}
-
-.gn-menu-main > li > a {
-  padding: 0 30px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-
-.gn-menu-main:after {
-  display: table;
-  clear: both;
-  content: "";
+  &.gn-username {
+    float: right;
+    border: none;
+    padding: 0 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  &.gn-login {
+    float: right;
+    border-left: $light-border;
+    border-right: none;
+  }
+  &.gn-logo {
+    border-right: none;
+    padding: 0 30px;
+    font-weight: bold;
+    font-size: $mod-scale-2;
+  }
+  &.gn-trigger {
+    position: relative;
+    width: $menu-height;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  & > a {
+    padding: 0 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
 }
 
 .gn-menu-wrapper {
   z-index: 1000;
   position: fixed;
-  top: 60px;
+  top: $menu-height;
   bottom: 0;
   left: 0;
   overflow: hidden;
-  width: 60px;
-  border-top: 1px solid #c6d0da;
-  background: white;
+  width: $menu-height;
+  border-top: $light-border;
+  background: $white;
   -webkit-transform: translateX(-60px);
   -moz-transform: translateX(-60px);
   transform: translateX(-60px);
@@ -180,43 +175,25 @@ body{
 }
 
 .gn-menu {
-  border-bottom: 1px solid #c6d0da;
+  border-bottom: $light-border;
   text-align: left;
   font-size: 18px;
-}
-
-.gn-menu li:not(:first-child),
-.gn-menu li li {
-  box-shadow: inset 0 1px #c6d0da
-}
-
-.gn-submenu li {
-  overflow: hidden;
-  height: 0;
-  -webkit-transition: height 0.3s;
-  -moz-transition: height 0.3s;
-  transition: height 0.3s;
-}
-
-.gn-submenu li a {
-  color: #024959
+  & li:not(:first-child){
+    box-shadow: inset 0 1px $borders
+  }
+  & li {
+    box-shadow: inset 0 1px $borders
+  }
 }
 
 .gn-icon::before {
   display: inline-block;
-  width: 60px;
+  width: $menu-height;
   text-align: center;
   text-transform: none;
-  font-weight: normal;
-  font-style: normal;
-  font-variant: normal;
-
-  line-height: 1;
+  font-weight: 400;
   speak: none;
 }
-
-
-/* if an icon anchor has a span, hide the span */
 
 .gn-icon span {
   width: 0;
@@ -230,20 +207,20 @@ body{
   vertical-align: -2px;
   width: 30px;
   height: 3px;
-  background: #6A6967;
-  box-shadow: 0 3px white, 0 -6px #6A6967, 0 -9px white, 0 -12px #6A6967;
+  background: $dark-text;
+  box-shadow: 0 3px $white, 0 -6px $dark-text, 0 -9px $white, 0 -12px $dark-text;
   content: '';
 }
 
 .no-touch .gn-icon-menu:hover::before,
 .no-touch .gn-icon-menu.gn-selected:hover::before {
   background: white;
-  box-shadow: 0 3px #6A6967, 0 -6px white, 0 -9px #6A6967, 0 -12px white;
+  box-shadow: 0 3px $dark-text, 0 -6px $white, 0 -9px $dark-text, 0 -12px $white;
 }
 
 .gn-icon-menu.gn-selected::before {
-  background: #f6833e;
-  box-shadow: 0 3px white, 0 -6px #f6833e, 0 -9px white, 0 -12px #f6833e;
+  background: $actions;
+  box-shadow: 0 3px $white, 0 -6px $actions, 0 -9px $white, 0 -12px $actions;
 }
 
 /* styles for opening menu */
@@ -260,37 +237,31 @@ body{
 }
 
 .gn-menu-wrapper.gn-open-all .gn-submenu li {
-  height: 60px
+  height: $menu-height;
 }
 
 @media screen and (max-width: 720px) {
 
-    .gn-menu-wrapper {
-      // fix for Android
-      margin-left: -60px;
-    //
-    }
+  .gn-menu-wrapper {
+    // fix for Android
+    margin-left: -$menu-height;
+  }
 
+  .gn-menu-wrapper.gn-open-all {
+    // fix for Android
+    margin-left: 0px;
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    transform: translateX(0px);
+    width: 100%;
+  }
 
-    .gn-menu-wrapper.gn-open-all {
-      // fix for Android
-      margin-left: 0px;
-
-      -webkit-transform: translateX(0px);
-      -moz-transform: translateX(0px);
-      transform: translateX(0px);
-      width: 100%;
-    }
-
-    .gn-menu-wrapper.gn-open-all .gn-scroller {
-      width: 130%
-    }
+  .gn-menu-wrapper.gn-open-all .gn-scroller {
+    width: 130%
+  }
 }
 
-html {
-  background-color: #f5f4f0;
-  color: #4a4643;
-}
+
 
 // CONTENT
 
@@ -298,11 +269,10 @@ html {
   margin: 40px 0 0;
   background-image: image-url("android.png");
   border-bottom: 1px solid $white;
-}
-
-.outer-container#blank{
-  background-image: none;
-  border-bottom: none;
+  &#blank {
+    background-image: none;
+    border-bottom: none;
+  }
 }
 
 .container{
@@ -321,23 +291,24 @@ html {
   }
 }
 
-h1.signup-heading{
-  font-size: $mod-scale-3;
-  font-family: 'Nexus Three', Arial, sans-serif;
-  @include media($tablet) {
-    text-align: center;
-    padding: 0 10px;
+.signup-text {
+  h1.signup-heading{
+    font-size: $mod-scale-3;
+    font-weight: 700;
+    font-family: $typeface;
+    @include media($tablet) {
+      text-align: center;
+      padding: 0 10px;
+    }
+  }
+  p.signup-subheading{
+    font-weight: bold;
+    @include media($tablet) {
+      text-align: center;
+      padding: 0 10px;
+    }
   }
 }
-
-p.signup-subheading{
-  font-weight: bold;
-  @include media($tablet) {
-    text-align: center;
-    padding: 0 10px;
-  }
-}
-
 
 .signup-form,
 .dash-chart,
@@ -360,33 +331,29 @@ p.signup-subheading{
     margin: 0;
   }
 }
+
 .form-inputs input {
   @include submit-field-formatting;
 }
 
-.form-actions input{
+.form-actions input {
   @include submit-field-formatting;
-  // @include background-image(linear-gradient($green-lighter 0, $green-lightest 100%, transparent 50%));
-  // border-color: $green-darkest;
   background-color: $buttons;
   color: $white;
-  // &:hover{
-  //   @include background-image(linear-gradient($green-light 0, $green-dark 100%, transparent 50%));
-  // }
 }
 
-.signup-info{
+.signup-info {
   font-size: $mod-scale-0;
   padding: 0;
   margin: 0 0 10px 0;
 }
 
-.marketing-text{
+.marketing-text {
   text-align: center;
-  h1{
+  h1 {
     margin: 5px 0;
   }
-  p{
+  p {
     margin: 5px 0 20px 0;
   }
 }
@@ -394,6 +361,9 @@ p.signup-subheading{
 .marketing-info-box{
   @include span-columns(4);
   text-align: center;
+  p {
+    font-weight: 300;
+  }
   @include media($tablet) {
     @include span-columns(6);
   }
@@ -406,15 +376,9 @@ p.signup-subheading{
 .marketing-icon{
   margin: $mod-scale-2;
   color: $actions;
-  // i{
-  //   border: 1px solid $grey-light;
-  //   border-radius: 50%;
-  //   padding: 20px;
-  // }
 }
 
-.marketing-inner-container,
-.enterprise-inner-container{
+.marketing-inner-container {
   @include span-columns(12);
   @include omega();
 }
@@ -424,47 +388,29 @@ p.signup-subheading{
   margin: $mod-scale-2 auto;
   border: 1px solid #ccc;
   position: relative;
-  // border-top-left-radius: 2px;
-  // border-top-right-radius: 2px;
   width: 50%;
   @include media($tablet) {
-    width: 95%;
+    width: $mobile-width;
   }
 }
-
-// .todo-container:before {
-//   content: '';
-//   // border-left: 1px solid #f5d6d6;
-//   // border-right: 1px solid #f5d6d6;
-//   width: 2px;
-//   position: absolute;
-//   top: 0;
-//   left: 40px;
-//   height: 100%;
-// }
 
 .main {
   position: relative;
   z-index: 2;
-  // border-top: 1px dotted #adadad;
 }
 
 .form-list {
   margin: 0;
   padding: $mod-scale-2;
   list-style: none;
+  li {
+    position: relative;
+  }
 }
 
-.form-list li {
-  position: relative;
+//CHECKBOXES
 
-}
-
-// .todo-list li:last-child {
-//   border-bottom: none;
-// }
-
-.todo{
+.todo {
   padding-bottom: 10px;
   position: relative;
   padding-left: 40px;
@@ -488,23 +434,23 @@ input[type="radio"] + label.collection_radio_buttons:before {
 }
 
 input[type="checkbox"] + label.todo:before {
-  content: "\f096"; /* check-empty */
+  content: "\f096";
   position: absolute;
   left: 0px;
 }
 
 input[type="checkbox"]:checked + label.todo:before {
-  content: "\f046"; /* check */
+  content: "\f046";
   position: absolute;
   left: 0px;
 }
 
 input[type="radio"] + label.collection_radio_buttons:before {
-   content: "\f10c"; /* check-empty */
+   content: "\f10c";
 }
 
 input[type="radio"]:checked + label.collection_radio_buttons:before {
-   content: "\f111"; /* check */
+   content: "\f111";
 }
 
 label.collection_radio_buttons {
@@ -531,15 +477,16 @@ input#health_profile_height {
   }
 }
 
-
-.health_profile_dob label,
-.health_profile_weight label,
-.health_profile_height label {
-  display: inline-block;
-  width: 25%;
+.health_profile_dob,
+.health_profile_weight,
+.health_profile_height {
+  label {
+    display: inline-block;
+    width: 25%;
+  }
 }
 
-.hp{
+.hp {
   display: inline-block;
   width: 24%;
 }
@@ -553,7 +500,8 @@ abbr {
 }
 
 p.form-info {
-  font-family: 'Nexus Three', Arial, sans-serif;
+  font-weight: 400;
+  font-family: $typeface;
 }
 
 .form-actions.health-profile-form{
@@ -584,12 +532,12 @@ p.form-info {
 }
 
 .plan-list {
-    padding: $mod-scale-1;
-    margin: 0 auto;
-    display: block;
-    width: 80%;
-    @include media($tablet) {
-    width: 95%;
+  padding: $mod-scale-1;
+  margin: 0 auto;
+  display: block;
+  width: 80%;
+  @include media($tablet) {
+    width: $mobile-width;
   }
 }
 
@@ -600,7 +548,6 @@ p.form-info {
     width: 100%;
   }
 }
-
 
 .new_user_health_plan input {
   display: block;
@@ -631,54 +578,48 @@ p.form-info {
 }
 
 .risk-header {
-  font-family: 'Nexus Three', Arial, sans-serif;
+  font-weight: 700;
+  font-family: $typeface;
   color: $actions;
 }
-
-
 
 #completion_chart {
   width: 100%;
 }
 
 .dash-wrapper {
-    box-sizing: border-box;
-    padding: 0 $mod-scale-1 $mod-scale-3;
+  box-sizing: border-box;
+  padding: 0 $mod-scale-1 $mod-scale-3;
 }
+
 .dash-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-}
-
-.dash-table th {
-  font-family: 'Nexus Three', Arial, sans-serif;
-  padding: 10px 0;
-  border-bottom: 2px solid $text;
-}
-
-.dash-table td {
-  padding: 5px 0;
-}
-
-.dash-table tbody tr:hover td {
-  color: $actions;
-
+  th {
+    font-weight: 700;
+    font-family: $typeface;
+    padding: 10px 0;
+    border-bottom: 2px solid $text;
+  }
+  td {
+    padding: 5px 0;
+  }
+  tbody tr:hover td {
+    color: $actions;
+  }
 }
 
 .plan-heading span {
-  font-family: 'Nexus Three', Arial, sans-serif;
+  font-weight: 700;
+  font-family: $typeface;
   text-transform: uppercase;
 }
-
 
 .signin-form{
   width: 50%;
   margin: 0 auto;
   @include media($tablet) {
-   width: 95%;
+   width: $mobile-width;
   }
-
 }
-
-

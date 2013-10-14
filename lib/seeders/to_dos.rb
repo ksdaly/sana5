@@ -4,18 +4,37 @@ module Seeders
     class << self
 
       def seed
-        to_dos.each do |attributes|
-          to_do = ToDo.where(title: attributes[:title]).first
+        seed_plan("Diabetes plan")
+        seed_plan("Heart plan")
+      end
+
+      def seed_plan(plan_name)
+        list = pick_todos(plan_name)
+        list.each do |attributes|
+          plan_id = pick_plan(plan_name)
+          to_do = ToDo.where("title = ? AND health_plan_id = ?", attributes[:title], plan_id ).first
           if to_do.nil?
             to_do = ToDo.new
             to_do.title = attributes[:title]
             to_do.description = attributes[:description]
-            to_do.health_plan_id = HealthPlan.where(title: "Diabetes plan").first.id
+            to_do.health_plan_id = plan_id
           else
             to_do.update_attributes(attributes)
           end
           to_do.save!
         end
+      end
+
+      def pick_todos(plan_name)
+        if plan_name == "Diabetes plan"
+          to_dos
+        elsif plan_name == "Heart plan"
+          to_dos
+        end
+      end
+
+      def pick_plan(plan_name)
+        HealthPlan.where(title: plan_name).first.id
       end
 
       def to_dos
@@ -31,10 +50,6 @@ module Seeders
           {
             title: "Drink a glass of water 15 minutes before every meal.",
             description: "We all need to drink more water. That’s a given. Plus, when you drink a bottle of water before you eat you’ll already feel a little more full and you won’t be as tempted to eat past the point of hunger. And you’ll create a handy reason to need to take more frequent walks… if only to the restroom.",
-          },
-          {
-            title: "Eat lunch at your desk.",
-            description: "Eat one portion of protein that fits in the palm of your hand, and a vegetable or fruit. That’s not a lot of food, but it is healthier than what you are eating now, and just as importantly lets you take baby steps towards better controlling your portions at every meal. Pack a can of tuna and two apples. Or bring a skinless chicken breast and two cucumbers. Just choose something you can eat at your desk…",
           },
           {
             title: "Stretch throughout the day.",

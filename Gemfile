@@ -46,6 +46,10 @@ group :test, :development do
   gem 'timecop'
 end
 
+group :test do
+  gem 'rake'
+end
+
 gem 'simple_form'
 
 gem 'devise'

@@ -48,6 +48,7 @@ end
 
 group :test do
   gem 'rake'
+  gem 'coveralls', require: false
 end
 
 gem 'simple_form'

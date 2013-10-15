@@ -10,9 +10,6 @@ class HealthProfilesController < ApplicationController
   def edit
   end
 
-  def show
-  end
-
   def new
     @health_profile = HealthProfile.new
   end

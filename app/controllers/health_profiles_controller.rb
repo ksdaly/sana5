@@ -1,26 +1,22 @@
 class HealthProfilesController < ApplicationController
   before_action :set_health_profile, only: [:show, :edit, :update, :destroy]
-
   before_action only: [:show, :edit, :update, :destroy] do  |x| x.require_patient! @health_profile end
+  before_action :redirect?, only: [:index, :new]
 
   def index
-
     @health_profiles = HealthProfile.where(user_id: current_user.id)
-    redirect_to_new?
   end
 
   def edit
   end
 
   def new
-    redirect_to_edit?
     @health_profile = HealthProfile.new
   end
 
   def create
     @health_profile = HealthProfile.new(health_profile_params)
     @health_profile.user = current_user
-    #TODO: eliminate duplication
     if @health_profile.save
       @health_profile.calculate_risks
       redirect_to new_user_health_plan_path, notice: 'Health profile created!'
@@ -43,7 +39,7 @@ class HealthProfilesController < ApplicationController
     end
   end
 
-    private
+  private
 
   def old_profile?
     # @health_profile.updated_at.to_date.beginning_of_day != Time.now.utc.to_date
@@ -60,12 +56,12 @@ class HealthProfilesController < ApplicationController
       :sibling_with_diabetes, :smoker, :exsmoker, :cardiovascular_risk, :diabetes_risk)
   end
 
-  def redirect_to_new?
-    redirect_to new_health_profile_path if no_profile? && action == 'index'
-  end
-
-  def redirect_to_edit?
-    redirect_to edit_health_profile_path(current_user.health_profiles.last) if !no_profile?
+  def redirect?
+    if no_profile? && params[:action] == 'index'
+      redirect_to new_health_profile_path
+    elsif !no_profile? && params[:action] == 'new'
+      redirect_to edit_health_profile_path(current_user.health_profiles.last)
+    end
   end
 
   def no_profile?

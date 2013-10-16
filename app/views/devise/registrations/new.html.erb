@@ -1,18 +1,23 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :username, :required => true, :autofocus => true %>
-    <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :password_confirmation, :required => true %>
+<div class="outer-container" id="blank">
+  <div class="container">
+    <div class="signin-form">
+      <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+         <%= f.input :username, required: true, autofocus: true, placeholder: "Pick a username", label: false %>
+          <%= f.input :email, required: true, autofocus: true, placeholder: "Your email", label: false %>
+          <%= f.input :password, required: true, placeholder: "Create a password", label: false %>
+          <p class="signup-info">Use at least eight characters.</p>
+          <%= f.input :password_confirmation, required: true, placeholder: "Confirm password", label: false %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up for Sana" %>
+          <p class="signup-info">By clicking "Sign up for Sana", you agree to our terms of service and privacy policy.</p>
+        </div>
+      <% end %>
+      <div class="devise-links">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

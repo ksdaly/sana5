@@ -12,6 +12,10 @@ Sana5::Application.routes.draw do
     end
   end
 
+ authenticated :user do
+  root to: "user_to_dos#index", as: :authenticated_root
+end
+
   root to: 'pages#show', id: 'home'
   # You can have the root of your site routed with "root"
   # root 'users#new'

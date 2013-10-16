@@ -11,14 +11,12 @@ class User < ActiveRecord::Base
   has_one :user_health_plan
 
   has_one :health_plan,
-    through: :user_health_plan,
-    dependent: :destroy
+    through: :user_health_plan
 
   has_many :user_to_dos
 
   has_many :to_dos,
-    through: :user_to_dos,
-    dependent: :destroy
+    through: :user_to_dos
 
   validates_presence_of :username
   validates_uniqueness_of :username

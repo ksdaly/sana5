@@ -4,8 +4,9 @@ class HealthProfilesController < ApplicationController
   before_action only: [:show, :edit, :update, :destroy] do  |x| x.require_patient! @health_profile end
 
   def index
-    redirect_to_new?
+
     @health_profiles = HealthProfile.where(user_id: current_user.id)
+    redirect_to_new?
   end
 
   def edit
@@ -60,7 +61,7 @@ class HealthProfilesController < ApplicationController
   end
 
   def redirect_to_new?
-    redirect_to new_health_profile_path if no_profile?
+    redirect_to new_health_profile_path if no_profile? && action == 'index'
   end
 
   def redirect_to_edit?

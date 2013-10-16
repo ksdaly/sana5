@@ -630,3 +630,20 @@ p.form-info {
   font-weight: 700;
   font-size: $mod-scale-1;
 }
+
+.devise-links {
+  ul {
+    padding: 0;
+    li {
+      list-style: none;
+      a {
+        color: $actions;
+        text-decoration: none;
+        font-size: $mod-scale-0;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

@@ -44,6 +44,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'timecop'
+  gem 'dotenv-rails'
 end
 
 group :test do

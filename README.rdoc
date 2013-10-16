@@ -1,4 +1,3 @@
-[![Build Status](http://allthebadges.io/ksdaly/sana5/travis.png)](http://allthebadges.io/ksdaly/sana5/travis)
-[![Coverage](http://allthebadges.io/ksdaly/sana5/coveralls.png)](http://allthebadges.io/ksdaly/sana5/coveralls)
-[![Code Climate](http://allthebadges.io/ksdaly/sana5/code_climate.png)](http://allthebadges.io/ksdaly/sana5/code_climate)
-
+{<img src="http://allthebadges.io/ksdaly/sana5/travis.png" alt="Build Status" />}[http://allthebadges.io/ksdaly/sana5/travis]
+{<img src="http://allthebadges.io/ksdaly/sana5/coveralls.png" alt="Coverage" />}[http://allthebadges.io/ksdaly/sana5/coveralls]
+{<img src="http://allthebadges.io/ksdaly/sana5/code_climate.png" alt="Code Climate" />}[http://allthebadges.io/ksdaly/sana5/code_climate]

@@ -1,3 +1,7 @@
 {<img src="https://travis-ci.org/ksdaly/sana5.png?branch=master" alt="Build Status" />}[https://travis-ci.org/ksdaly/sana5]
 {<img src="https://coveralls.io/repos/ksdaly/sana5/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/ksdaly/sana5?branch=master]
 {<img src="http://allthebadges.io/ksdaly/sana5/code_climate.png" alt="Code Climate" />}[http://allthebadges.io/ksdaly/sana5/code_climate]
+
+== SANA
+
+Sana provides online tools that help people lose weight and develop healthy, sustainable habits which will reduce their cardiovascular and diabetes risks.

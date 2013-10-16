@@ -1,5 +1,9 @@
 == README
 
+[![Build Status](http://allthebadges.io/ksdaly/sana5/travis.png)](http://allthebadges.io/ksdaly/sana5/travis)
+[![Coverage](http://allthebadges.io/ksdaly/sana5/coveralls.png)](http://allthebadges.io/ksdaly/sana5/coveralls)
+[![Code Climate](http://allthebadges.io/ksdaly/sana5/code_climate.png)](http://allthebadges.io/ksdaly/sana5/code_climate)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

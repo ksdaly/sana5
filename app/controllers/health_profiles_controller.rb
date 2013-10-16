@@ -3,8 +3,6 @@ class HealthProfilesController < ApplicationController
 
   before_action only: [:show, :edit, :update, :destroy] do  |x| x.require_patient! @health_profile end
 
-
-
   def index
     redirect_to_new?
     @health_profiles = HealthProfile.where(user_id: current_user.id)

@@ -22,12 +22,15 @@ module Seeders
         [
           {
             title: "Diabetes plan",
-            description: "Join our 16-week program and learn to change the factors that put you at risk for diabetes.",
+            description: "Your personalized 4-week plan will help you lose weight,
+                      change behaviors that place you at risk of developing diabetes,
+                      and set you on a path toward a lifetime of healthy living.",
             plan_length_days: 21
           },
           {
             title: "Heart plan",
-            description: "Join our 16-week program and learn to change the factors that put you at risk for cardiovascular diseases.",
+            description: "Your personalized 4-week plan will help you lose weight,
+                      change behaviors that place you at risk of developing cardiovascular disease, and set you on a path toward a lifetime of healthy living.",
             plan_length_days: 21
           }
         ]

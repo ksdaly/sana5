@@ -20,10 +20,48 @@ class UserHealthPlan < ActiveRecord::Base
     ToDo.where(health_plan_id: self.health_plan.id)
   end
 
+  def current_user_profile
+    user = User.where("id=?", self.user_id).last
+    profile = user.health_profiles.last
+  end
 
-#TODO subgroups no more than one from each a day
+  def get_nutrition_todos(todos)
+    collection = []
+    if current_user_profile.calculated_bmi < 25
+      collection << todos.where(group: "nutrition", subgroup: "easy").sample(1)
+    else
+      collection << todos.where(group: "nutrition", subgroup: "challenging").sample(1)
+    end
+    collection
+  end
+
+  def get_activity_todos(todos)
+    collection = []
+    if current_user_profile.calculated_age < 45
+      collection << todos.where(group: "activity", subgroup: "easy").sample(1)
+    else
+      collection << todos.where(group: "nutrition", subgroup: "challenging").sample(1)
+    end
+  end
+
+  def get_wellness_todos(todos)
+    collection = []
+    if current_user_profile.male
+      collection << todos.where(group: "wellness", subgroup: "male").sample(1)
+    else
+      collection << todos.where(group: "wellness", subgroup: "female").sample(1)
+    end
+    collection
+  end
+
+
   def get_daily_todos
-    get_plan_todos.sample(3)
+    todos = get_plan_todos
+    collection = []
+    collection << get_nutrition_todos(todos)
+    collection << get_activity_todos(todos)
+    collection << get_wellness_todos(todos)
+    collection.flatten!
   end
 
   def plan_end_date

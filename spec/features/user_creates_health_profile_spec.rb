@@ -11,11 +11,12 @@ feature 'User creates health profile', %Q{
   # * If I don't specify valid information, I get an error
   # * If I specify the required information, the information is recorded and my health risk evaluation is displayed
   # * If I create my first health profile, I am redirected to new user health plan
+  # * I cannot access health profile dash unless I havea health profile
+  # * I can only create additional health profiles through editing a previous one
 
     let!(:user1) {FactoryGirl.create(:user)}
     let(:health_profile) {FactoryGirl.create(:health_profile, user: user1)}
     let(:old_health_profile) {FactoryGirl.create(:health_profile, user: user1, created_at: Time.now - 1.year )}
-    let!(:user_health_plan) {FactoryGirl.create(:user_health_plan, user: user1 )}
 
   scenario 'user creates health profile' do
     sign_in_as(user1)
@@ -64,6 +65,19 @@ feature 'User creates health profile', %Q{
     expect(HealthProfile.count).to eql(previous_count + 1)
     expect(HealthProfile.last.weight).to eql(200)
     expect(HealthProfile.last.cardiovascular_risk).to_not be_nil
+  end
+
+  scenario "user can't access health profiles if nil" do
+    sign_in_as(user1)
+    visit health_profiles_path
+    expect(current_path).to eql(new_health_profile_path)
+  end
+
+  scenario "user can't create additional health profiles through new action" do
+    sign_in_as(user1)
+    health_profile
+    visit new_health_profile_path
+    expect(current_path).to eql(edit_health_profile_path(health_profile))
   end
 
 end

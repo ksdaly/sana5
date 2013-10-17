@@ -6,12 +6,16 @@
     <div class="form-container">
       <div class="main">
         <ul class="form-list">
-          <% @user_to_dos.each do |user_to_do| %>
-          <li>
-            <%= simple_form_for user_to_do, remote: true do |f| %>
-              <%= f.input :completed, label: user_to_do.to_do.title, label_html: {class: 'todo'}, input_html: {class: 'toggle', id:"user_to_do_completed#{user_to_do.id}" } %>
-              <%= f.submit "Update" %>
-            </li>
+          <% if @user_to_dos.blank? %>
+            There are no current todos.
+          <% else %>
+            <% @user_to_dos.each do |user_to_do| %>
+            <li>
+              <%= simple_form_for user_to_do, remote: true do |f| %>
+                <%= f.input :completed, label: user_to_do.to_do.title, label_html: {class: 'todo'}, input_html: {class: 'toggle', id:"user_to_do_completed#{user_to_do.id}" } %>
+                <%= f.submit "Update" %>
+              </li>
+              <% end %>
             <% end %>
           <% end %>
         </ul>

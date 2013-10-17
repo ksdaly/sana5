@@ -1,7 +1,7 @@
 class HealthProfilesController < ApplicationController
   before_action :set_health_profile, only: [:show, :edit, :update, :destroy]
-
   before_action only: [:show, :edit, :update, :destroy] do  |x| x.require_patient! @health_profile end
+  before_action :redirect?, only: [:index, :new]
 
   def index
     @health_profiles = HealthProfile.where(user_id: current_user.id)
@@ -17,7 +17,6 @@ class HealthProfilesController < ApplicationController
   def create
     @health_profile = HealthProfile.new(health_profile_params)
     @health_profile.user = current_user
-    #TODO: eliminate duplication
     if @health_profile.save
       @health_profile.calculate_risks
       redirect_to new_user_health_plan_path, notice: 'Health profile created!'
@@ -40,21 +39,33 @@ class HealthProfilesController < ApplicationController
     end
   end
 
-    private
+  private
 
-    def old_profile?
-      # @health_profile.updated_at.to_date.beginning_of_day != Time.now.utc.to_date
-      @health_profile.created_at.to_date != Time.now.utc.to_date
-    end
+  def old_profile?
+    # @health_profile.updated_at.to_date.beginning_of_day != Time.now.utc.to_date
+    @health_profile.created_at.to_date != Time.now.utc.to_date
+  end
 
-    def set_health_profile
-      @health_profile = HealthProfile.find(params[:id])
-    end
+  def set_health_profile
+    @health_profile = HealthProfile.find(params[:id])
+  end
 
-    def health_profile_params
-      params.require(:health_profile).permit(:male, :dob, :weight, :height, :systolic_bp,
-        :diastolic_bp, :antihypertensive_drugs, :steroid_drugs, :diabetes, :parent_with_diabetes,
-        :sibling_with_diabetes, :smoker, :exsmoker, :cardiovascular_risk, :diabetes_risk)
+  def health_profile_params
+    params.require(:health_profile).permit(:male, :dob, :weight, :height, :systolic_bp,
+      :diastolic_bp, :antihypertensive_drugs, :steroid_drugs, :diabetes, :parent_with_diabetes,
+      :sibling_with_diabetes, :smoker, :exsmoker, :cardiovascular_risk, :diabetes_risk)
+  end
+
+  def redirect?
+    if no_profile? && params[:action] == 'index'
+      redirect_to new_health_profile_path
+    elsif !no_profile? && params[:action] == 'new'
+      redirect_to edit_health_profile_path(current_user.health_profiles.last)
     end
+  end
+
+  def no_profile?
+    current_user.health_profiles.blank?
+  end
 
 end

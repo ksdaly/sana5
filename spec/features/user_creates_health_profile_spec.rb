@@ -17,7 +17,6 @@ feature 'User creates health profile', %Q{
     let!(:user1) {FactoryGirl.create(:user)}
     let(:health_profile) {FactoryGirl.create(:health_profile, user: user1)}
     let(:old_health_profile) {FactoryGirl.create(:health_profile, user: user1, created_at: Time.now - 1.year )}
-    let!(:user_health_plan) {FactoryGirl.create(:user_health_plan, user: user1 )}
 
   scenario 'user creates health profile' do
     sign_in_as(user1)

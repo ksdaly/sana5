@@ -3,16 +3,8 @@
     <div class="dash-inner-container">
       <div class="dash-wrapper">
         <p class="plan-heading">You are signed up for <span><%= @user_health_plan.health_plan.title %></span> </p>
-        </p>
-          Your personalized 4-week plan will help you lose weight,
-          change behaviors that place you at risk of developing diabetes,
-          and set you on a path toward a lifetime of healthy living.
-        </p>
         <p>
-          Type 2 diabetes is a disorder that affects the way the body uses digested food for growth and energy. Normally, the food one eats is broken down into glucose, a form of sugar. The glucose then passes into the bloodstream, where it is used by the cells for growth and energy. For glucose to reach the cells, however, insulin must be present. Insulin is a hormone produced by the pancreas, a fist-sized gland behind the stomach.
-        </p>
-        <p>
-          Prediabetes is a condition in which blood glucose levels are higher than normal but not high enough for a diagnosis of diabetes. Prediabetes is also called impaired glucose tolerance (IGT) or impaired fasting glucose (IFG), depending on the test used to measure blood glucose levels. Having prediabetes puts one at higher risk for developing type 2 diabetes. People with prediabetes are also at increased risk for developing cardiovascular disease.
+          <%= @user_health_plan.health_plan.description.html_safe %>
         </p>
       </div>
     </div>

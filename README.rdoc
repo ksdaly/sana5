@@ -5,3 +5,7 @@
 == SANA
 
 Sana provides online tools that help people lose weight and develop healthy, sustainable habits which will reduce their cardiovascular and diabetes risks.
+
+## Setup
+
+After checking out the application, copy `/config/database.example.yml` to `/config/database.yml`. These files contain sample database credentials required to run the application.

@@ -16,7 +16,6 @@ class UserHealthPlan < ActiveRecord::Base
   end
 
   def get_plan_todos
-    # ToDo.where(id: ToDo.pluck(:id).sample(5))
     ToDo.where(health_plan_id: self.health_plan.id)
   end
 
@@ -25,42 +24,29 @@ class UserHealthPlan < ActiveRecord::Base
     profile = user.health_profiles.last
   end
 
-  def get_nutrition_todos(todos)
+  def get_samples(todos, variable, limit, group, subgroup_one = "easy", subgroup_two = "challenging")
     collection = []
-    if current_user_profile.calculated_bmi < 25
-      collection << todos.where(group: "nutrition", subgroup: "easy").sample(1)
-    else
-      collection << todos.where(group: "nutrition", subgroup: "challenging").sample(1)
+    if base_condition?(variable, limit)
+      collection << todo_sample(todos, group, subgroup_one)
+      else
+      collection << todo_sample(todos, group, subgroup_two)
     end
     collection
   end
 
-  def get_activity_todos(todos)
-    collection = []
-    if current_user_profile.calculated_age < 45
-      collection << todos.where(group: "activity", subgroup: "easy").sample(1)
-    else
-      collection << todos.where(group: "nutrition", subgroup: "challenging").sample(1)
-    end
+  def base_condition?(variable, limit)
+    current_user_profile.send(variable) > limit
   end
 
-  def get_wellness_todos(todos)
-    collection = []
-    if current_user_profile.male
-      collection << todos.where(group: "wellness", subgroup: "male").sample(1)
-    else
-      collection << todos.where(group: "wellness", subgroup: "female").sample(1)
-    end
-    collection
+  def todo_sample(todos, group, subgroup)
+    todos.where(group: group, subgroup: subgroup).sample(2)
   end
-
 
   def get_daily_todos
     todos = get_plan_todos
     collection = []
-    collection << get_nutrition_todos(todos)
-    collection << get_activity_todos(todos)
-    collection << get_wellness_todos(todos)
+    collection << get_samples(todos, :calculated_bmi, 25, "nutrition")
+    collection << get_samples(todos, :calculated_age, 50, "activity")
     collection.flatten!
   end
 

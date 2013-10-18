@@ -46,10 +46,16 @@ module Seeders
             subgroup: "challenging"
           },
           {
+            title: "Eat vegetables with every meal",
+            description: "Try to eat a rainbow of fruits and vegetables every day and with every meal—the brighter the better. Colorful, deeply colored fruits and vegetables contain higher concentrations of vitamins, minerals, and antioxidants—and different colors provide different benefits, so eat a variety. Aim for a minimum of five portions each day.",
+            group: "nutrition",
+            subgroup: "easy"
+          },
+          {
             title: "Get up and walk around every hour.",
             description: "Sitting for extended periods is hazardousto your health. Plus it makes you feel sluggish and inactive. At least once an hour get up and move around. Walk while you talk on the phone. Manage by walking around. Your heart will thank you, and so will your attitude.",
             group: "activity",
-            subgroup: "moderate"
+            subgroup: "challenging"
           },
           {
             title: "Drink a glass of water 15 minutes before every meal.",
@@ -64,19 +70,13 @@ module Seeders
             subgroup: "easy"
           },
           {
-            title: "Make 'lunch' active.",
-            description: "You ate at your desk and you’re definitely not full, so now make your lunch break productive. Go for a walk. Do some push-ups or sit-ups. It doesn’t matter what you do as long as you do something. You’ll burn a few calories, burn off some stress, and feel better when you get back in the work saddle. Just as importantly you’ll start to make fitness a part of your daily lifestyle without having to add to your already busy schedule.",
-            group: "activity",
-            subgroup: "easy"
-          },
-          {
             title: "Eat a meal replacement bar for an afternoon snack.",
             description: "Sure, many protein bars taste like sawdust. But most are also nutritious, low in calories, and make it easy to stave off the mid-afternoon hunger pangs you’ll inevitably feel after having eaten a light lunch. Don’t get too hung up on nutritional values; just pick a bar that includes 10 or 15 grams of protein and you’ll be fine. Eating a mid-afternoon meal replacement bar doesn’t just bridge the lunch and dinner gap, it’s an easy way to get in the habit of eating smaller meals more frequently.",
             group: "nutrition",
             subgroup: "easy"
           },
           {
-            title: "Do something physically challenging once a week.",
+            title: "Do something physically challenging.",
             description: "Pick something challenging. Hike to the top of a mountain. Ride your bike to the next town and back. You'll soon start to remember how much you're capable of... and you'll want to do more. Just make sure you pick a goal, not a yardstick. Don’t decide to walk five miles on a treadmill; that’s a yardstick goal. Walk five miles to a certain location instead. Don’t ride 20 miles on a spinner; ride your bicycle to a friend’s house and back. Make the activity accomplishment-based. Accomplishments are fun.",
             group: "activity",
             subgroup: "challenging"
@@ -84,14 +84,50 @@ module Seeders
           {
             title: "Meditate for 10 minutes.",
             description: "Meditate for 10 minutes.",
-            group: "wellness",
-            subgroup: "male"
+            group: "activity",
+            subgroup: "easy"
           },
           {
             title: "Practice yoga for 15 minutes.",
-            description: "Meditate for 10 minutes.",
-            group: "wellness",
-            subgroup: "female"
+            description: "Practice yoga for 15 minutes.",
+            group: "activity",
+            subgroup: "easy"
+          },
+          {
+            title: "Practice yoga for 60 minutes.",
+            description: "Practice yoga for 30 minutes.",
+            group: "activity",
+            subgroup: "challenging"
+          },
+          {
+            title: "Go jogging before leaving for work",
+            description: "Go jogging before leaving for work",
+            group: "activity",
+            subgroup: "challenging"
+          },
+          {
+            title: "Walk for 30 minutes after work",
+            description: "Walk for 30 minutes after work",
+            group: "activity",
+            subgroup: "easy"
+          },
+          {
+            title: "Choose whole grains over processed carbs",
+            description: "Choose whole grains",
+            group: "nutrition",
+            subgroup: "easy"
+          },
+          {
+            title: "Pack or cook your own lunch",
+            description: "Choose whole grains",
+            group: "nutrition",
+            subgroup: "challenging"
+          },
+          {
+            title: "Choose whole grains",
+            description: "Choose whole grains",
+            group: "nutrition",
+            subgroup: "easy"
           }
         ]
       end
@@ -105,10 +141,16 @@ module Seeders
             subgroup: "challenging"
           },
           {
+            title: "Eat vegetables with every meal",
+            description: "Try to eat a rainbow of fruits and vegetables every day and with every meal—the brighter the better. Colorful, deeply colored fruits and vegetables contain higher concentrations of vitamins, minerals, and antioxidants—and different colors provide different benefits, so eat a variety. Aim for a minimum of five portions each day.",
+            group: "nutrition",
+            subgroup: "easy"
+          },
+          {
             title: "Get up and walk around every hour.",
             description: "Sitting for extended periods is hazardousto your health. Plus it makes you feel sluggish and inactive. At least once an hour get up and move around. Walk while you talk on the phone. Manage by walking around. Your heart will thank you, and so will your attitude.",
             group: "activity",
-            subgroup: "moderate"
+            subgroup: "challenging"
           },
           {
             title: "Drink a glass of water 15 minutes before every meal.",
@@ -123,19 +165,13 @@ module Seeders
             subgroup: "easy"
           },
           {
-            title: "Make 'lunch' active.",
-            description: "You ate at your desk and you’re definitely not full, so now make your lunch break productive. Go for a walk. Do some push-ups or sit-ups. It doesn’t matter what you do as long as you do something. You’ll burn a few calories, burn off some stress, and feel better when you get back in the work saddle. Just as importantly you’ll start to make fitness a part of your daily lifestyle without having to add to your already busy schedule.",
-            group: "activity",
-            subgroup: "easy"
-          },
-          {
             title: "Eat a meal replacement bar for an afternoon snack.",
             description: "Sure, many protein bars taste like sawdust. But most are also nutritious, low in calories, and make it easy to stave off the mid-afternoon hunger pangs you’ll inevitably feel after having eaten a light lunch. Don’t get too hung up on nutritional values; just pick a bar that includes 10 or 15 grams of protein and you’ll be fine. Eating a mid-afternoon meal replacement bar doesn’t just bridge the lunch and dinner gap, it’s an easy way to get in the habit of eating smaller meals more frequently.",
             group: "nutrition",
             subgroup: "easy"
           },
           {
-            title: "Do something physically challenging once a week.",
+            title: "Do something physically challenging.",
             description: "Pick something challenging. Hike to the top of a mountain. Ride your bike to the next town and back. You'll soon start to remember how much you're capable of... and you'll want to do more. Just make sure you pick a goal, not a yardstick. Don’t decide to walk five miles on a treadmill; that’s a yardstick goal. Walk five miles to a certain location instead. Don’t ride 20 miles on a spinner; ride your bicycle to a friend’s house and back. Make the activity accomplishment-based. Accomplishments are fun.",
             group: "activity",
             subgroup: "challenging"
@@ -143,14 +179,50 @@ module Seeders
           {
             title: "Meditate for 10 minutes.",
             description: "Meditate for 10 minutes.",
-            group: "wellness",
-            subgroup: "male"
+            group: "activity",
+            subgroup: "easy"
           },
           {
             title: "Practice yoga for 15 minutes.",
-            description: "Meditate for 10 minutes.",
-            group: "wellness",
-            subgroup: "female"
+            description: "Practice yoga for 15 minutes.",
+            group: "activity",
+            subgroup: "easy"
+          },
+          {
+            title: "Practice yoga for 60 minutes.",
+            description: "Practice yoga for 30 minutes.",
+            group: "activity",
+            subgroup: "challenging"
+          },
+          {
+            title: "Go jogging before leaving for work",
+            description: "Go jogging before leaving for work",
+            group: "activity",
+            subgroup: "challenging"
+          },
+          {
+            title: "Walk for 30 minutes after work",
+            description: "Walk for 30 minutes after work",
+            group: "activity",
+            subgroup: "easy"
+          },
+          {
+            title: "Choose whole grains over processed carbs",
+            description: "Choose whole grains",
+            group: "nutrition",
+            subgroup: "easy"
+          },
+          {
+            title: "Pack or cook your own lunch",
+            description: "Choose whole grains",
+            group: "nutrition",
+            subgroup: "challenging"
+          },
+          {
+            title: "Choose whole grains",
+            description: "Choose whole grains",
+            group: "nutrition",
+            subgroup: "easy"
           }
         ]
       end

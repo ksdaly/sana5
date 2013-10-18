@@ -5,7 +5,7 @@ describe Seeders::ToDos do
   let (:seeder_to_dos) {Seeders::ToDos}
 
   it 'seeds to-dos' do
-    seeded_to_do = seeder_to_dos.to_dos.first[:title]
+    seeded_to_do = seeder_to_dos.diabetes_to_dos.first[:title]
     seeder_health_plans.seed
     seeder_to_dos.seed
     expect(ToDo.where(title: seeded_to_do)).to be_present

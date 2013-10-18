@@ -16,14 +16,38 @@ class UserHealthPlan < ActiveRecord::Base
   end
 
   def get_plan_todos
-    # ToDo.where(id: ToDo.pluck(:id).sample(5))
     ToDo.where(health_plan_id: self.health_plan.id)
   end
 
+  def current_user_profile
+    user = User.where("id=?", self.user_id).last
+    profile = user.health_profiles.last
+  end
 
-#TODO subgroups no more than one from each a day
+  def get_samples(todos, variable, limit, group, subgroup_one = "easy", subgroup_two = "challenging")
+    collection = []
+    if base_condition?(variable, limit)
+      collection << todo_sample(todos, group, subgroup_one)
+      else
+      collection << todo_sample(todos, group, subgroup_two)
+    end
+    collection
+  end
+
+  def base_condition?(variable, limit)
+    current_user_profile.send(variable) > limit
+  end
+
+  def todo_sample(todos, group, subgroup)
+    todos.where(group: group, subgroup: subgroup).sample(2)
+  end
+
   def get_daily_todos
-    get_plan_todos.sample(3)
+    todos = get_plan_todos
+    collection = []
+    collection << get_samples(todos, :calculated_bmi, 25, "nutrition")
+    collection << get_samples(todos, :calculated_age, 50, "activity")
+    collection.flatten!
   end
 
   def plan_end_date

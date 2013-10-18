@@ -40,6 +40,8 @@ FactoryGirl.define do
     health_plan
     sequence (:title) {|n|"to do #{n}"}
     description 'do this thing'
+    group 'nutrition'
+    subgroup 'easy'
   end
 
   factory :user_to_do do

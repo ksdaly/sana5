@@ -19,8 +19,10 @@ describe 'user to dos' do
     user_health_plan = FactoryGirl.create(:user_health_plan)
     to_do_1 = FactoryGirl.create(:to_do, health_plan: user_health_plan.health_plan)
     to_do_2 = FactoryGirl.create(:to_do)
-    user_health_plan.populate_user_todos
     user = user_health_plan.user
+    user_health_profile = FactoryGirl.create(:health_profile, user: user)
+    user_health_plan.populate_user_todos
+
 
     expect(user.user_to_dos).to_not eql(nil)
     expect(user.user_to_dos).to_not include(UserToDo.where(to_do_id: to_do_2.id))
@@ -29,8 +31,9 @@ describe 'user to dos' do
   it 'populates user todos with day unique todos' do
     user_health_plan = FactoryGirl.create(:user_health_plan)
     to_dos = FactoryGirl.create_list(:to_do, 10, health_plan: user_health_plan.health_plan)
-    user_health_plan.populate_user_todos
     user = user_health_plan.user
+    user_health_profile = FactoryGirl.create(:health_profile, user: user)
+    user_health_plan.populate_user_todos
     current_todos = UserToDo.where(user: user, day: Date.today)
 
     expect(current_todos.uniq.count).to eql(current_todos.count)
@@ -38,9 +41,10 @@ describe 'user to dos' do
 
   it 'populates todos for the duration of user_health_plan' do
     user_health_plan = FactoryGirl.create(:user_health_plan)
-    to_do_1 = FactoryGirl.create(:to_do, health_plan: user_health_plan.health_plan)
-    user_health_plan.populate_user_todos
+    to_do_1 = FactoryGirl.create(:to_do, health_plan: user_health_plan.health_plan, subgroup: "challenging")
     user = user_health_plan.user
+    user_health_profile = FactoryGirl.create(:health_profile, user: user)
+    user_health_plan.populate_user_todos
     plan_length = user_health_plan.health_plan.plan_length_days
 
     expect(user.user_to_dos.count).to eql(plan_length)
@@ -51,12 +55,38 @@ describe 'user to dos' do
   it 'populates todos with the appropriate number each day' do
     user_health_plan = FactoryGirl.create(:user_health_plan)
     to_dos = FactoryGirl.create_list(:to_do, 10, health_plan: user_health_plan.health_plan)
-    user_health_plan.populate_user_todos
     user = user_health_plan.user
+    user_health_profile = FactoryGirl.create(:health_profile, user: user)
+    user_health_plan.populate_user_todos
     plan_length = user_health_plan.health_plan.plan_length_days
 
     expect(user.user_to_dos.count).to eql(user_health_plan.get_daily_todos.count * plan_length)
   end
+
+  it 'populates todos according to bmi' do
+    user_health_plan = FactoryGirl.create(:user_health_plan)
+    to_do_1 = FactoryGirl.create(:to_do, health_plan: user_health_plan.health_plan, subgroup: "challenging")
+    to_do_2 = FactoryGirl.create(:to_do, health_plan: user_health_plan.health_plan, subgroup: "easy")
+    user = user_health_plan.user
+    user_health_profile = FactoryGirl.create(:health_profile, user: user)
+    user_health_plan.populate_user_todos
+
+    expect(user.user_to_dos).to_not eql(nil)
+    expect(user.user_to_dos).to_not include(UserToDo.where(to_do_id: to_do_2.id))
+  end
+
+  it 'populates todos according to age' do
+    user_health_plan = FactoryGirl.create(:user_health_plan)
+    to_do_1 = FactoryGirl.create(:to_do, health_plan: user_health_plan.health_plan, group: "activity", subgroup: "challenging")
+    to_do_2 = FactoryGirl.create(:to_do, health_plan: user_health_plan.health_plan, group: "activity", subgroup: "easy")
+    user = user_health_plan.user
+    user_health_profile = FactoryGirl.create(:health_profile, user: user)
+    user_health_plan.populate_user_todos
+
+    expect(user.user_to_dos).to_not eql(nil)
+    expect(user.user_to_dos).to_not include(UserToDo.where(to_do_id: to_do_2.id))
+  end
+
 end
 
 describe 'returns completion array for charts for a given user' do

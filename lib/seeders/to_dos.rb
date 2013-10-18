@@ -17,6 +17,8 @@ module Seeders
             to_do = ToDo.new
             to_do.title = attributes[:title]
             to_do.description = attributes[:description]
+            to_do.group = attributes[:group]
+            to_do.subgroup = attributes[:subgroup]
             to_do.health_plan_id = plan_id
           else
             to_do.update_attributes(attributes)

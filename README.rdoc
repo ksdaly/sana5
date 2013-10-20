@@ -8,4 +8,4 @@ Sana provides online tools that help people lose weight and develop healthy, sus
 
 == Setup
 
-After checking out the application, copy `/config/database.example.yml` to `/config/database.yml`. These files contain sample database credentials required to run the application.
+After checking out the application, copy `/config/database.example.yml` to `/config/database.yml`. These files contain sample database credentials required to run the application. 'rake db:seed' is required to populate database and properly run the application.
